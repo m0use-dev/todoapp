@@ -3,30 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <title>会員登録 | TODOアプリ</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
   </head>
   <body>
-    <header>
-      <h1>TODOアプリ</h1>
+    <header class="navbar">
+      <div class="container">
+        <h1 class="">TODOアプリ</h1>
+        <nav>
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="btn btn-primary" href="/login">ログイン</a></li>
+            <li class="nav-item"><a class="btn btn-primary" href="/signup">会員登録</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
-    <main>
-      <p>会員登録して、TODOリストを利用しよう</p>
+    <main class="">
+      <p class="">会員登録して、TODOリストを利用しよう</p>
       <form method="post" action="/signup">
-        <div>
-          <div>ユーザID</div>
-          <div><input type="text" name="user" id=""></div>
+        <div class="mb-3">
+          <label class="form-label" for="">ユーザID</label>
+          <input class="form-control" type="text" name="user" id="" />
         </div>
-        <div>
-          <div>パスワード</div>
-          <div><input type="password" name="password" id=""></div>
+        <div class="mb-3">
+          <label class="form-label" for="">パスワード</label>
+          <input class="form-control" type="password" name="password" id="" />
         </div>
-        <div>
-          <input type="submit" value="">
+        <div class="mb-3">
+          <input class="btn btn-primary" type="submit" value="登録" />
         </div>
       </form>
     </main>
-    <footer>
-      <small>© 2023 TODOアプリ</small>
+    <footer class="bg-light">
+      <div class="container text-center">
+        <small>© 2023 TODOアプリ</small>
+      </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
