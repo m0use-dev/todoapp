@@ -21,7 +21,8 @@ public class DatabaseConfig {
 
     private DatabasePopulator databasePopulator() {
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new ClassPathResource("schema.sql")); // SQLファイルのパス
+        populator.addScript(new ClassPathResource("schema.sql"));
+        populator.addScript(new ClassPathResource("data.sql"));
         return populator;
     }
 }
