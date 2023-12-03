@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
   <head>
-    <meta charset="UTF-8" />
-    <title>会員登録 | TODOアプリ</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <title>会員登録</title>
   </head>
   <body>
-    <header class="navbar">
-      <div class="container">
-        <h1 class="h2">TODOアプリ</h1>
-        <nav>
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="btn btn-primary" href="/login">ログイン</a></li>
-            <li class="nav-item"><a class="btn btn-primary" href="/signup">会員登録</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <main class="">
+    <main layout:fragment="content">
       <div class="container">
         <p class="">会員登録して、TODOリストを利用しよう</p>
         <form method="post" action="/signup">
@@ -35,11 +26,5 @@
         </form>
       </div>
     </main>
-    <footer class="bg-light mt-5">
-      <div class="container text-center">
-        <small>© 2023 TODOアプリ</small>
-      </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>

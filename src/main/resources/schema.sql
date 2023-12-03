@@ -1,23 +1,23 @@
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) PRIMARY KEY NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `enabled` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE users (
+    id INT PRIMARY KEY NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    enabled TINYINT NOT NULL
+);
 
+CREATE TABLE authorities (
+    id INT PRIMARY KEY NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    authority TEXT NOT NULL
+);
 
-CREATE TABLE IF NOT EXISTS `authorities` (
-  `id` int(11) PRIMARY KEY NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `authority` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE IF NOT EXISTS `posts` (
-  `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `content` varchar(255) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  `deadline` DATETIME NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE posts (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL,
+    deadline DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);

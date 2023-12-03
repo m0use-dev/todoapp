@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -17,7 +18,14 @@ public class SampleSecurityConfig {
   @Bean
 	public SecurityFilterChain filterChain(HttpSecurity http)
 			throws Exception {
-		http.csrf().disable();
+	  http.authorizeHttpRequests(
+			  auth -> auth
+					  .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll());
+	  http.csrf(
+			  csrf -> csrf
+					  .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));
+	  http.headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
+	  http.csrf().disable();
 		http.authorizeHttpRequests(authorize -> {
 			authorize.anyRequest().permitAll();
 		});
