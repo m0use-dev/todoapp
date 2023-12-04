@@ -11,36 +11,7 @@
     <section layout:fragment="content">
       <div class="container">
         <p class="">TODOリスト</p>
-        <form method="post" action="/">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col align-middle">ユーザID</th>
-                <th scope="col align-middle">投稿内容</th>
-                <th scope="col align-middle">状態</th>
-                <th scope="col align-middle">作成日</th>
-                <th scope="col align-middle">期日</th>
-                <th scope="col align-middle">操作</th>
-              </tr>
-            </thead>
-            <!-- <tr>
-              <td><p class="">1</p></td>
-              <td><p class="">ダミーテキスト</p></td>
-              <td><p class="">未完了</p></td>
-              <td><p class="">2023/01/01</p></td>
-              <td><p class="">2023/12/01</p></td>
-              <td><a class="me-1" href="">編集</a><a class="me-1" href="">削除</a><a class="" href="">完了</a></td>
-            </tr> -->
-            <tr th:each="item : ${data}">
-              <td><p class="" th:text="${item.user_id}">1</p></td>
-              <td><p class="" th:text="${item.content}">ダミーテキスト</p></td>
-              <td><p class="" th:text="${item.status}">未完了</p></td>
-              <td><p class="" th:text="${item.created_at}">2023/01/01</p></td>
-              <td><p class="" th:text="${item.deadline}">2023/12/01</p></td>
-              <td><a class="me-1" href="">編集</a><a class="me-1" href="">削除</a><a class="" href="">完了</a></td>
-            </tr>
-          </table>
-        </form>
+
       </div>
     </section>
   </body>

@@ -7,10 +7,10 @@ import org.springframework.boot.Banner.Mode;
 @SpringBootApplication
 public class ToDoAppApplication {
 
-	public static void main(String[] args) {
-		SpringApplication app = new SpringApplication(ToDoAppApplication.class);
-		app.setBannerMode(Mode.OFF);
-		app.run(args);
-	}
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(ToDoAppApplication.class);
+        app.setBannerMode(Mode.OFF);
+        app.run(args);
+    }
 
 }
