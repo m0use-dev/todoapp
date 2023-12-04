@@ -13,13 +13,12 @@ public class SampleSecurityController {
 //    public String index() {
 //        return "index";
 //    }
-
-
+//
 //    @RequestMapping("/admin")
 //    public String admin() {
 //        return "admin";
 //    }
-
+//
 //    @RequestMapping("/completion")
 //    public String completion() {
 //        return "completion";
@@ -34,7 +33,7 @@ public class SampleSecurityController {
 //    public String delete() {
 //        return "delete";
 //    }
-
+//
 //    @RequestMapping("/signup")
 //    public String signup() {
 //        return "index";
