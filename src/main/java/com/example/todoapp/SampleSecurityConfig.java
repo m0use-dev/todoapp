@@ -14,40 +14,40 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SampleSecurityConfig {
-  
-  @Bean
-	public SecurityFilterChain filterChain(HttpSecurity http)
-			throws Exception {
-	  http.authorizeHttpRequests(
-			  auth -> auth
-					  .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll());
-	  http.csrf(
-			  csrf -> csrf
-					  .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));
-	  http.headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
-	  http.csrf().disable();
-		http.authorizeHttpRequests(authorize -> {
-			authorize.anyRequest().permitAll();
-		});
-		http.formLogin(form -> {
-			form.defaultSuccessUrl("/secret")
-					.loginPage("/login");
-		});
-		return http.build();
-	}
 
-  @Bean
-  public InMemoryUserDetailsManager userDetailsManager(){
-    String username = "user";
-    String password = "pass";
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http)
+            throws Exception {
+        http.authorizeHttpRequests(
+                auth -> auth
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll());
+        http.csrf(
+                csrf -> csrf
+                        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));
+        http.headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
+        http.csrf().disable();
+        http.authorizeHttpRequests(authorize -> {
+            authorize.anyRequest().permitAll();
+        });
+        http.formLogin(form -> {
+            form.defaultSuccessUrl("/secret")
+                    .loginPage("/login");
+        });
+        return http.build();
+    }
 
-    UserDetails user = User.withUsername(username)
-      .password(
-        PasswordEncoderFactories
-          .createDelegatingPasswordEncoder()
-          .encode(password))
-      .roles("USER")
-      .build();
-    return new InMemoryUserDetailsManager(user);
-  }
+    @Bean
+    public InMemoryUserDetailsManager userDetailsManager() {
+        String username = "user";
+        String password = "pass";
+
+        UserDetails user = User.withUsername(username)
+                .password(
+                        PasswordEncoderFactories
+                                .createDelegatingPasswordEncoder()
+                                .encode(password))
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(user);
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.todoapp.service.post;
 
-public record PostEntity (
+public record PostEntity(
         long user_id,
         String content,
         String status,

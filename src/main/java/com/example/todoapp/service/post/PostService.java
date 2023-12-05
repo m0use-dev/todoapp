@@ -10,7 +10,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
-    public List<PostEntity> find(){
+
+    public List<PostEntity> find() {
         return postRepository.select();
     }
 }

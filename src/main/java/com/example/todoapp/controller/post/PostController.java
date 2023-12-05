@@ -16,7 +16,7 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public String list(Model model){
+    public String list(Model model) {
         var postList = postService.find()
                 .stream()
                 .map(PostDTO::toDTO)

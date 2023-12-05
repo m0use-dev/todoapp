@@ -10,24 +10,24 @@
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
-  <header class="bg-light mb-5">
-    <div class="container d-flex justify-content-between">
-      <h1 class="h2">TODOアプリ</h1>
-      <nav class="navbar">
-        <ul class="navbar-nav flex-row">
-          <li class="nav-item me-2"><a class="btn btn-primary" th:href="@{/login}">ログイン</a></li>
-          <li class="nav-item"><a class="btn btn-primary" th:href="@{/signup}">会員登録</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <section layout:fragment="content">
-  </section>
-  <footer class="bg-light mt-5">
-    <div class="container text-center">
-      <small>© 2023 TODOアプリ</small>
-    </div>
-  </footer>
-  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<header class="bg-light mb-5">
+  <div class="container d-flex justify-content-between">
+    <h1 class="h2">TODOアプリ</h1>
+    <nav class="navbar">
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item me-2"><a class="btn btn-primary" th:href="@{/login}">ログイン</a></li>
+        <li class="nav-item"><a class="btn btn-primary" th:href="@{/signup}">会員登録</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<section layout:fragment="content">
+</section>
+<footer class="bg-light mt-5">
+  <div class="container text-center">
+    <small>© 2023 TODOアプリ</small>
+  </div>
+</footer>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

@@ -4,39 +4,39 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}"
 >
-  <head>
-    <title>削除</title>
-  </head>
-  <body>
-    <main layout:fragment="content">
-      <div class="container">
-        <p class="">削除しますか?</p>
-        <form method="post" action="/delete">
-          <div class="mb-3">
-            <p class="">ユーザID</p>
-            <p class="">1</p>
-          </div>
-          <div class="mb-3">
-            <p class="">投稿内容</p>
-            <p class="">ダミーテキスト</p>
-          </div>
-          <div class="mb-3">
-            <p class="">状態</p>
-            <p class="">未完了</p>
-          </div>
-          <div class="mb-3">
-            <p class="">作成日</p>
-            <p class="">2023/01/01</p>
-          </div>
-          <div class="mb-3">
-            <p class="">期日</p>
-            <p class="">2023/12/01</p>
-          </div>
-          <div class="">
-            <input class="btn btn-primary" type="submit" value="削除" />
-          </div>
-        </form>
+<head>
+  <title>削除</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="container">
+    <p class="">削除しますか?</p>
+    <form method="post" action="/delete">
+      <div class="mb-3">
+        <p class="">ユーザID</p>
+        <p class="">1</p>
       </div>
-    </main>
-  </body>
+      <div class="mb-3">
+        <p class="">投稿内容</p>
+        <p class="">ダミーテキスト</p>
+      </div>
+      <div class="mb-3">
+        <p class="">状態</p>
+        <p class="">未完了</p>
+      </div>
+      <div class="mb-3">
+        <p class="">作成日</p>
+        <p class="">2023/01/01</p>
+      </div>
+      <div class="mb-3">
+        <p class="">期日</p>
+        <p class="">2023/12/01</p>
+      </div>
+      <div class="">
+        <input class="btn btn-primary" type="submit" value="削除"/>
+      </div>
+    </form>
+  </div>
+</main>
+</body>
 </html>

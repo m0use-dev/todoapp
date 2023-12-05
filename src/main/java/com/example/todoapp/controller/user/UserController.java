@@ -1,4 +1,4 @@
-package com.example.todoapp.controller.account;
+package com.example.todoapp.controller.user;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/account")
-public class AccountController {
+@RequestMapping("/user")
+public class UserController {
 
     @RequestMapping("/signup")
     public String signup() {
-        return "accounts/signup";
+        return "users/signup";
     }
 
     @RequestMapping("/login")
     public String login() {
-        return "accounts/login";
+        return "users/login";
     }
 
     @RequestMapping("/secret")
