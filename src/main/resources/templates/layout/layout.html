@@ -18,7 +18,7 @@
       <ul class="navbar-nav flex-row">
         <li class="nav-item ms-2" sec:authorize="hasRole('ADMIN')"><a class="btn btn-primary" th:href="@{/admin}">管理画面</a></li>
         <li class="nav-item ms-2" sec:authorize="isAuthenticated()"><a class="btn btn-primary" th:href="@{/post}">リスト</a></li>
-        <li class="nav-item ms-2" sec:authorize="isAuthenticated()"><a class="btn btn-primary" th:href="@{/user/logout}">リスト</a></li>
+        <li class="nav-item ms-2" sec:authorize="isAuthenticated()"><a class="btn btn-primary" th:href="@{/user/logout}">ログアウト</a></li>
         <li class="nav-item ms-2" sec:authorize="isAnonymous()"><a class="btn btn-primary" th:href="@{/user/login}">ログイン</a></li>
         <li class="nav-item ms-2" sec:authorize="isAnonymous()"><a class="btn btn-primary" th:href="@{/user/signup}">会員登録</a></li>
       </ul>

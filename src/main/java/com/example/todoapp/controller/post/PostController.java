@@ -28,25 +28,25 @@ public class PostController {
     }
 
     @GetMapping("/completion")
-    @PreAuthorize("isAuthenticated")
+    @PreAuthorize("isAuthenticated()")
     public String completion() {
         return "posts/completion";
     }
 
     @GetMapping("/create")
-    @PreAuthorize("isAuthenticated")
+    @PreAuthorize("isAuthenticated()")
     public String create() {
         return "posts/create";
     }
 
     @GetMapping("/edit")
-    @PreAuthorize("isAuthenticated")
+    @PreAuthorize("isAuthenticated()")
     public String edit() {
         return "posts/edit";
     }
 
     @GetMapping("/delete")
-    @PreAuthorize("isAuthenticated")
+    @PreAuthorize("isAuthenticated()")
     public String delete() {
         return "posts/delete";
     }

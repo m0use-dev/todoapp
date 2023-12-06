@@ -22,13 +22,13 @@
           <th scope="col align-middle">操作</th>
         </tr>
         </thead>
-        <tr>
-          <td><p class="">1</p></td>
-          <td><p class="">ダミーテキスト</p></td>
-          <td><p class="">未完了</p></td>
-          <td><p class="">2023/01/01</p></td>
-          <td><p class="">2023/12/01</p></td>
-          <td><a class="me-1" href="">編集</a><a class="me-1" href="">削除</a><a class="" href="">完了</a></td>
+        <tr th:each="post : ${postList}">
+          <td><p class="" th:text="${post.user_id}"></p></td>
+          <td><p class="" th:text="${post.content}"></p></td>
+          <td><p class="" th:text="${post.status}"></p></td>
+          <td><p class="" th:text="${post.created_at}"></p></td>
+          <td><p class="" th:text="${post.deadline}"></p></td>
+          <td><a class="me-1" th:href="@{/post/edit}">編集</a><a class="me-1" th:href="@{/post/delete}">削除</a><a class="" th:href="@{/post/completion}">完了</a></td>
         </tr>
       </table>
     </form>

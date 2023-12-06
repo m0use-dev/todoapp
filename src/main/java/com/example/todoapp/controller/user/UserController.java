@@ -13,13 +13,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
     @RequestMapping("/signup")
-    @PreAuthorize("permitAll")
+    @PreAuthorize("isAnonymous()")
     public String signup() {
         return "users/signup";
     }
 
     @RequestMapping("/login")
-    @PreAuthorize("permitAll")
+    @PreAuthorize("isAnonymous()")
     public String login() {
         return "users/login";
     }
