@@ -43,6 +43,10 @@ public class SampleSecurityConfig {
             form.defaultSuccessUrl("/post")
                     .loginPage("/user/login");
         });
+        http.logout()
+                .logoutUrl("/user/logout") // ログアウトのURLを変更
+                .logoutSuccessUrl("/") // ログアウト成功後のリダイレクト先
+                .permitAll();
         return http.build();
     }
 
