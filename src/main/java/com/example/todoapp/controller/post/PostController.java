@@ -17,7 +17,7 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    @PreAuthorize("permitAll")
+    @PreAuthorize("isAuthenticated")
     public String list(Model model) {
         var postList = postService.find()
                 .stream()
@@ -28,25 +28,25 @@ public class PostController {
     }
 
     @GetMapping("/completion")
-    @PreAuthorize("permitAll")
+    @PreAuthorize("isAuthenticated")
     public String completion() {
         return "posts/completion";
     }
 
     @GetMapping("/create")
-    @PreAuthorize("permitAll")
+    @PreAuthorize("isAuthenticated")
     public String create() {
         return "posts/create";
     }
 
     @GetMapping("/delete")
-    @PreAuthorize("permitAll")
+    @PreAuthorize("isAuthenticated")
     public String delete() {
         return "posts/delete";
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("permitAll")
+    @PreAuthorize("isAuthenticated")
     public String admin() {
         return "posts/admin";
     }

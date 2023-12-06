@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,6 +22,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SampleSecurityConfig {
     @Autowired
     private DataSource dataSource;
+//    検証用　エンコードをオフ
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)
@@ -33,7 +40,8 @@ public class SampleSecurityConfig {
             authorize.anyRequest().permitAll();
         });
         http.formLogin(form -> {
-            form.defaultSuccessUrl("/secret");
+            form.defaultSuccessUrl("/post")
+                    .loginPage("/user/login");
         });
         return http.build();
     }
@@ -42,4 +50,6 @@ public class SampleSecurityConfig {
     public UserDetailsManager userDetailsManager() {
         return new JdbcUserDetailsManager(this.dataSource);
     }
+
 }
+

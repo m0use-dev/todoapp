@@ -23,16 +23,4 @@ public class UserController {
     public String login() {
         return "users/login";
     }
-
-    @RequestMapping("/secret")
-    @PreAuthorize("permitAll")
-    public ModelAndView secret(ModelAndView mav, HttpServletRequest request) {
-        String user = request.getRemoteUser();
-        String msg = "This is secret page. [login by \"" + user + "\"]";
-        mav.setViewName("Secret");
-        mav.addObject("title", "Secret page");
-        mav.addObject("msg", msg);
-        return mav;
-    }
-
 }

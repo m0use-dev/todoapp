@@ -10,4 +10,5 @@ import java.util.List;
 public interface PostRepository {
     @Select("SELECT user_id,content,status,created_at,updated_at,deadline FROM posts;")
     List<PostEntity> select();
+
 }
