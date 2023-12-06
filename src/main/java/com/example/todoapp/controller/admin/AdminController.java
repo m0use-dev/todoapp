@@ -15,4 +15,16 @@ public class AdminController {
     public String index() {
         return "admin/index";
     }
+
+    @GetMapping("/posts")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String posts() {
+        return "admin/posts";
+    }
+
+    @GetMapping("/users")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String users() {
+        return "admin/users";
+    }
 }
