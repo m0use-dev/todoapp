@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
+<head>
+  <title>管理者専用</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="container">
+    <form method="post" action="/admin">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col align-middle">ユーザID</th>
+          <th scope="col align-middle">投稿内容</th>
+          <th scope="col align-middle">状態</th>
+          <th scope="col align-middle">作成日</th>
+          <th scope="col align-middle">期日</th>
+          <th scope="col align-middle">操作</th>
+        </tr>
+        </thead>
+        <tr>
+          <td><p class="">1</p></td>
+          <td><p class="">ダミーテキスト</p></td>
+          <td><p class="">未完了</p></td>
+          <td><p class="">2023/01/01</p></td>
+          <td><p class="">2023/12/01</p></td>
+          <td><a class="me-1" href="">編集</a><a class="me-1" href="">削除</a><a class="" href="">完了</a></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</main>
+</body>
+</html>

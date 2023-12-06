@@ -39,15 +39,16 @@ public class PostController {
         return "posts/create";
     }
 
+    @GetMapping("/edit")
+    @PreAuthorize("isAuthenticated")
+    public String edit() {
+        return "posts/edit";
+    }
+
     @GetMapping("/delete")
     @PreAuthorize("isAuthenticated")
     public String delete() {
         return "posts/delete";
     }
 
-    @GetMapping("/admin")
-    @PreAuthorize("isAuthenticated")
-    public String admin() {
-        return "posts/admin";
-    }
 }
