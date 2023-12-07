@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -24,6 +27,8 @@ public class PostController {
                 .map(PostDTO::toDTO)
                 .toList();
         model.addAttribute("postList", postList);
+        model.addAttribute("lastWeek", LocalDate.now().minusDays(7));
+        model.addAttribute("today", LocalDate.now());
         return "posts/index";
     }
 
