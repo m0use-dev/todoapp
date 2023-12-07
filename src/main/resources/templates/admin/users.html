@@ -19,10 +19,10 @@
           <th scope="col align-middle">ユーザー権限</th>
         </tr>
         </thead>
-        <tr>
-          <td><p class="">1</p></td>
-          <td><p class="">user1</p></td>
-          <td><p class="">ADMIN</p></td>
+        <tr th:each="user : ${userList}">
+          <td><p class="" th:text="${user.id}">1</p></td>
+          <td><p class="" th:text="${user.username}">user1</p></td>
+          <td><p class="" th:text="${user.authority}">ADMIN</p></td>
         </tr>
       </table>
     </form>

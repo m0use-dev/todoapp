@@ -1,7 +1,9 @@
 package com.example.todoapp.controller.admin;
 
 import com.example.todoapp.controller.post.PostDTO;
+import com.example.todoapp.controller.user.UserDTO;
 import com.example.todoapp.service.post.PostService;
+import com.example.todoapp.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
     private final PostService postService;
+    private final UserService userService;
     @GetMapping
     @PreAuthorize("isAuthenticated")
     public String index() {
@@ -23,7 +26,7 @@ public class AdminController {
     @GetMapping("/posts")
     @PreAuthorize("isAuthenticated")
     public String posts(Model model) {
-        var postList = postService.findAll()
+        var postList = postService.getPostAll()
                 .stream()
                 .map(PostDTO::toDTO)
                 .toList();
@@ -33,7 +36,12 @@ public class AdminController {
 
     @GetMapping("/users")
     @PreAuthorize("isAuthenticated")
-    public String users() {
+    public String users(Model model) {
+        var userList = userService.getUserAll()
+                .stream()
+                .map(UserDTO::toDTO)
+                .toList();
+        model.addAttribute("userList", userList);
         return "admin/users";
     }
 }
