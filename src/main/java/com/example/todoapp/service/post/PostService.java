@@ -14,4 +14,8 @@ public class PostService {
     public List<PostEntity> find() {
         return postRepository.select();
     }
+    public List<PostEntity> findAll() {
+        return postRepository.selectAll();
+    }
+
 }
