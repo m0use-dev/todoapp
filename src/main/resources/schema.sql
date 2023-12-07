@@ -16,8 +16,8 @@ CREATE TABLE posts (
     user_id INT NOT NULL,
     content VARCHAR(255) NOT NULL,
     status VARCHAR(10) NOT NULL,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL,
-    deadline DATETIME NOT NULL,
+    created_at DATE NOT NULL,
+    updated_at DATE NOT NULL,
+    deadline DATE NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
