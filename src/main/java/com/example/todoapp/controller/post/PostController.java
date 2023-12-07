@@ -18,7 +18,7 @@ public class PostController {
 
     @GetMapping
     @PreAuthorize("isAuthenticated")
-    public String list(Model model) {
+    public String index(Model model) {
         var postList = postService.find()
                 .stream()
                 .map(PostDTO::toDTO)

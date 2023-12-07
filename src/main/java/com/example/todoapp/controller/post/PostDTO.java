@@ -3,7 +3,7 @@ package com.example.todoapp.controller.post;
 import com.example.todoapp.service.post.PostEntity;
 
 public record PostDTO(
-        long user_id,
+        int user_id,
         String content,
         String status,
         String created_at,
