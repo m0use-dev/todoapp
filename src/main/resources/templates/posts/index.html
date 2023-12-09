@@ -31,7 +31,7 @@
       <table class="table table-striped">
         <thead>
         <tr>
-          <th scope="col align-middle">ユーザID</th>
+<!--          <th scope="col align-middle">ユーザID</th>-->
           <th scope="col align-middle">投稿内容</th>
           <th scope="col align-middle">状態</th>
           <th scope="col align-middle">作成日</th>
@@ -40,7 +40,7 @@
         </tr>
         </thead>
         <tr th:each="post : ${postList}">
-          <td><p class="" th:text="${post.user_id}"></p></td>
+<!--          <td><p class="" th:text="${post.user_id}"></p></td>-->
           <td><p class="" th:text="${post.content}"></p></td>
           <td><p class="" th:text="${post.status}"></p></td>
           <td><p class="" th:text="${post.created_at}" th:classappend="${lastWeek gt post.created_at}? 'text-warning'"></p></td>
