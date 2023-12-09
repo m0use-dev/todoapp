@@ -11,10 +11,13 @@
 <main layout:fragment="content">
   <div class="container">
     <p class="">会員登録して、TODOリストを利用しよう</p>
-    <form method="post" action="/signup">
+    <form method="post" th:action="@{/signup}">
+      <div th:if="${signupError}">
+        <div th:text="${signupError}"></div>
+      </div>
       <div class="mb-3">
-        <label class="form-label" for="user">ユーザID</label>
-        <input class="form-control" type="text" name="user" id="user"/>
+        <label class="form-label" for="username">ユーザID</label>
+        <input class="form-control" type="text" name="username" id="username"/>
       </div>
       <div class="mb-3">
         <label class="form-label" for="password">パスワード</label>

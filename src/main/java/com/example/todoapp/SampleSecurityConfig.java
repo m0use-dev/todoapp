@@ -48,6 +48,7 @@ public class SampleSecurityConfig {
                 .logoutUrl("/user/logout") // ログアウトのURLを変更
                 .logoutSuccessUrl("/") // ログアウト成功後のリダイレクト先
                 .permitAll();
+
         return http.build();
     }
 

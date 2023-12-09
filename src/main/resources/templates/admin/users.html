@@ -10,22 +10,20 @@
 <body>
 <main layout:fragment="content">
   <div class="container">
-    <form method="post" action="/admin">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col align-middle">ユーザID</th>
-          <th scope="col align-middle">ユーザー名</th>
-          <th scope="col align-middle">ユーザー権限</th>
-        </tr>
-        </thead>
-        <tr th:each="user : ${userList}">
-          <td><p class="" th:text="${user.id}">1</p></td>
-          <td><p class="" th:text="${user.username}">user1</p></td>
-          <td><p class="" th:text="${user.authority}">ADMIN</p></td>
-        </tr>
-      </table>
-    </form>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col align-middle">ユーザID</th>
+        <th scope="col align-middle">ユーザー名</th>
+        <th scope="col align-middle">ユーザー権限</th>
+      </tr>
+      </thead>
+      <tr th:each="user : ${userList}">
+        <td><p class="" th:text="${user.id}"></p></td>
+        <td><p class="" th:text="${user.username}"></p></td>
+        <td><p class="" th:text="${user.authority}"></p></td>
+      </tr>
+    </table>
   </div>
 </main>
 </body>

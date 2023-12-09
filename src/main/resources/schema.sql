@@ -18,6 +18,6 @@ CREATE TABLE posts (
     status VARCHAR(10) NOT NULL,
     created_at DATE NOT NULL,
     updated_at DATE NOT NULL,
-    deadline DATE NOT NULL,
+    deadline DATE,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

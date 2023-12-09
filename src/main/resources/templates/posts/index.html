@@ -27,29 +27,28 @@
       タスクを削除しました
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <form method="post" action="/">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-<!--          <th scope="col align-middle">ユーザID</th>-->
-          <th scope="col align-middle">投稿内容</th>
-          <th scope="col align-middle">状態</th>
-          <th scope="col align-middle">作成日</th>
-          <th scope="col align-middle">期日</th>
-          <th scope="col align-middle">操作</th>
-        </tr>
-        </thead>
-        <tr th:each="post : ${postList}">
-<!--          <td><p class="" th:text="${post.user_id}"></p></td>-->
-          <td><p class="" th:text="${post.content}"></p></td>
-          <td><p class="" th:text="${post.status}"></p></td>
-          <td><p class="" th:text="${post.created_at}" th:classappend="${lastWeek gt post.created_at}? 'text-warning'"></p></td>
-          <td><p class="" th:text="${post.deadline}" th:classappend="${today gt post.deadline}? 'text-danger'"></p></td>
-          <td><a class="me-1" th:href="@{/post/{id}/edit(id=${post.id})}">編集</a><a class="me-1" th:href="@{/post/delete}">削除</a><a
-                  class="" th:href="@{/post/completion}">完了</a></td>
-        </tr>
-      </table>
-    </form>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <!--          <th scope="col align-middle">ユーザID</th>-->
+        <th scope="col align-middle">投稿内容</th>
+        <th scope="col align-middle">状態</th>
+        <th scope="col align-middle">作成日</th>
+        <th scope="col align-middle">期日</th>
+        <th scope="col align-middle">操作</th>
+      </tr>
+      </thead>
+      <tr th:each="post : ${postList}">
+        <!--          <td><p class="" th:text="${post.user_id}"></p></td>-->
+        <td><p class="" th:text="${post.content}"></p></td>
+        <td><p class="" th:text="${post.status}"></p></td>
+        <td><p class="" th:text="${post.created_at}" th:classappend="${lastWeek gt post.created_at}? ' '"></p></td>
+        <td><p class="" th:text="${post.deadline}" th:classappend="${today gt post.deadline}? 'text-danger'"></p></td>
+        <td><a class="me-1" th:href="@{/post/{id}/edit(id=${post.id})}">編集</a><a class="me-1"
+                                                                                   th:href="@{/post/delete}">削除</a><a
+                class="" th:href="@{/post/completion}">完了</a></td>
+      </tr>
+    </table>
   </div>
 </section>
 </body>
