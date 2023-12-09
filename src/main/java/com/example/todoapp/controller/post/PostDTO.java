@@ -1,14 +1,20 @@
 package com.example.todoapp.controller.post;
 
 import com.example.todoapp.service.post.PostEntity;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
 public record PostDTO(
+        @NotNull
         int user_id,
+        @NotNull
         String content,
+        @NotNull
         String status,
+        @NotNull
         LocalDate created_at,
+        @NotNull
         LocalDate updated_at,
         LocalDate deadline
 ) {
