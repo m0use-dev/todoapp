@@ -11,6 +11,10 @@
 <body>
 <main layout:fragment="content">
   <div class="container">
+    <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+      ログインに失敗しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <p class="">ログインして、TODOリストを利用しよう</p>
     <form method="post" th:action="@{/user/login}">
       <div class="mb-3">
