@@ -22,6 +22,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SampleSecurityConfig {
     @Autowired
     private DataSource dataSource;
+
 //    検証用　エンコードをオフ
     @Bean
     public PasswordEncoder passwordEncoder() {

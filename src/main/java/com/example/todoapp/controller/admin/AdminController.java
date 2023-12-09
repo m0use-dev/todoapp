@@ -18,13 +18,13 @@ public class AdminController {
     private final PostService postService;
     private final UserService userService;
     @GetMapping
-    @PreAuthorize("isAuthenticated")
+    @PreAuthorize("hasRole('ADMIN')")
     public String index() {
         return "admin/index";
     }
 
     @GetMapping("/posts")
-    @PreAuthorize("isAuthenticated")
+    @PreAuthorize("hasRole('ADMIN')")
     public String posts(Model model) {
         var postList = postService.getPostAll()
                 .stream()
@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    @PreAuthorize("isAuthenticated")
+    @PreAuthorize("hasRole('ADMIN')")
     public String users(Model model) {
         var userList = userService.getUserAll()
                 .stream()
