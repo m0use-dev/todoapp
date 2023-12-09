@@ -26,7 +26,7 @@ public class AdminController {
     @GetMapping("/posts")
     @PreAuthorize("hasRole('ADMIN')")
     public String posts(Model model) {
-        var postList = postService.getPostAll()
+        var postList = postService.getPostsAll()
                 .stream()
                 .map(PostDTO::toDTO)
                 .toList();

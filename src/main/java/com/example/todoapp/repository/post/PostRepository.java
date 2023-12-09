@@ -9,10 +9,13 @@ import java.util.List;
 @Mapper
 public interface PostRepository {
     @Select("SELECT user_id,content,status,created_at,updated_at,deadline FROM posts WHERE user_id = 1;")
-    List<PostEntity> getPost();
+    List<PostEntity> getPosts();
 
     @Select("SELECT user_id,content,status,created_at,updated_at,deadline FROM posts;")
-    List<PostEntity> getPostAll();
+    List<PostEntity> getPostsAll();
+
+    @Select("SELECT user_id,content,status,created_at,updated_at,deadline FROM posts WHERE id = 1 ;")
+    List<PostEntity> getPost(int id);
 
 //    @Select("INSERT INTO posts (id, user_id, content, status, created_at, updated_at, deadline) VALUES (1, 1, 'テスト投稿', 1, '2023-11-10', '2023-11-10', '2023-12-10');")
 //    List<PostEntity> insertPost();

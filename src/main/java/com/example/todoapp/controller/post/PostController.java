@@ -6,9 +6,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 
@@ -22,7 +22,7 @@ public class PostController {
     @GetMapping
     @PreAuthorize("isAuthenticated")
     public String index(Model model) {
-        var postList = postService.getPost()
+        var postList = postService.getPosts()
                 .stream()
                 .map(PostDTO::toDTO)
                 .toList();
@@ -32,27 +32,36 @@ public class PostController {
         return "posts/index";
     }
 
-    @GetMapping("/completion")
+    @GetMapping("/{id}/completion")
     @PreAuthorize("isAuthenticated()")
-    public String completion() {
+    public String completion(@PathVariable int id) {
+
         return "posts/completion";
     }
 
     @GetMapping("/create")
     @PreAuthorize("isAuthenticated()")
-    public String create() {
+    public String create(@PathVariable int id) {
         return "posts/create";
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
-    public String edit() {
+    public String edit(@PathVariable int id, Model model) {
+        var post = postService.getPost(id)
+                .stream()
+                .map(PostDTO::toDTO)
+                .toList();
+//        if (post == null) {
+//            return "";
+//        }
+        model.addAttribute("postList", post);
         return "posts/edit";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/{id}/delete")
     @PreAuthorize("isAuthenticated()")
-    public String delete() {
+    public String delete(@PathVariable int id) {
         return "posts/delete";
     }
 

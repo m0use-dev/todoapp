@@ -11,11 +11,15 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
 
-    public List<PostEntity> getPost() {
-        return postRepository.getPost();
+    public List<PostEntity> getPosts() {
+        return postRepository.getPosts();
     }
-    public List<PostEntity> getPostAll() {
-        return postRepository.getPostAll();
+    public List<PostEntity> getPostsAll() {
+        return postRepository.getPostsAll();
+    }
+
+    public List<PostEntity> getPost(int id) {
+        return postRepository.getPost(id);
     }
 
 }
