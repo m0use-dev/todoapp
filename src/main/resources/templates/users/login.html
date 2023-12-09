@@ -11,11 +11,12 @@
 <body>
 <main layout:fragment="content">
   <div class="container">
+    <h2 class="text-center">ログイン</h2>
     <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show" role="alert">
       ログインに失敗しました
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <p class="">ログインして、TODOリストを利用しよう</p>
+    <p class="text-center">ログインして、TODOリストを利用しよう</p>
     <form method="post" th:action="@{/user/login}">
       <div class="mb-3">
         <label class="form-label" for="username">ユーザID</label>
@@ -26,7 +27,7 @@
         <input class="form-control" type="password" name="password" id="password"/>
       </div>
       <div class="">
-        <input class="btn btn-primary" type="submit" value="ログイン"/>
+        <input class="btn btn-primary mx-auto" type="submit" value="ログイン"/>
       </div>
     </form>
   </div>

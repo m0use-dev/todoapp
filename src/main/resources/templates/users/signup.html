@@ -5,12 +5,13 @@
       layout:decorate="~{layout/layout}"
 >
 <head>
-  <title>会員登録</title>
+  <title>ユーザー登録</title>
 </head>
 <body>
 <main layout:fragment="content">
   <div class="container">
-    <p class="">会員登録して、TODOリストを利用しよう</p>
+    <h2 class="text-center">ユーザー登録</h2>
+    <p class="text-center">ユーザー登録して、TODOリストを利用しよう</p>
     <form method="post" th:action="@{/signup}">
       <div th:if="${signupError}">
         <div th:text="${signupError}"></div>

@@ -10,8 +10,11 @@
 <body>
 <section layout:fragment="content">
   <div class="container">
-    <a th:href="@{/admin/posts}">記事一覧</a>
-    <a th:href="@{/admin/users}">ユーザー一覧</a>
+    <h2 class="text-center">管理画面</h2>
+    <ul>
+      <li><a th:href="@{/admin/posts}">記事一覧</a></li>
+      <li><a th:href="@{/admin/users}">ユーザー一覧</a></li>
+    </ul>
   </div>
 </section>
 </body>

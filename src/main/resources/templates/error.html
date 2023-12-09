@@ -10,7 +10,7 @@
 <body>
 <section layout:fragment="content">
   <div class="container">
-    <p class="" th:text="${status} + ' ' + ${error}"></p>
+    <h2 class="text-center" th:text="${status} + ' ' + ${error}"></h2>
     <p>エラーが発生しました。</p>
     <a th:href="@{/}" class="btn btn-primary">トップページに戻る</a>
   </div>
