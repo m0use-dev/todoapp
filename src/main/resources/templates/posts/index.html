@@ -45,7 +45,7 @@
           <td><p class="" th:text="${post.status}"></p></td>
           <td><p class="" th:text="${post.created_at}" th:classappend="${lastWeek gt post.created_at}? 'text-warning'"></p></td>
           <td><p class="" th:text="${post.deadline}" th:classappend="${today gt post.deadline}? 'text-danger'"></p></td>
-          <td><a class="me-1" th:href="@{/post/1/edit}">編集</a><a class="me-1" th:href="@{/post/delete}">削除</a><a
+          <td><a class="me-1" th:href="@{/post/{id}/edit(id=${post.id})}">編集</a><a class="me-1" th:href="@{/post/delete}">削除</a><a
                   class="" th:href="@{/post/completion}">完了</a></td>
         </tr>
       </table>

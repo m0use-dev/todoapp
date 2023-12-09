@@ -2,6 +2,7 @@ package com.example.todoapp.service.post;
 import java.time.LocalDate;
 
 public record PostEntity(
+        int id,
         int user_id,
         String content,
         String status,

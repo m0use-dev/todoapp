@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 public record PostDTO(
         @NotNull
+        int id,
+        @NotNull
         int user_id,
         @NotNull
         String content,
@@ -20,6 +22,7 @@ public record PostDTO(
 ) {
     public static PostDTO toDTO(PostEntity entity) {
         return new PostDTO(
+                entity.id(),
                 entity.user_id(),
                 entity.content(),
                 entity.status(),
