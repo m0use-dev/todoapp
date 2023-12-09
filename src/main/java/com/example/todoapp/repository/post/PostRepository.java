@@ -14,16 +14,16 @@ public interface PostRepository {
     @Select("SELECT id,user_id,content,status,created_at,updated_at,deadline FROM posts;")
     List<PostEntity> getPostsAll();
 
-    @Select("SELECT id,user_id,content,status,created_at,updated_at,deadline FROM posts WHERE id = 1 ;")
+    @Select("SELECT id,user_id,content,status,created_at,updated_at,deadline FROM posts WHERE id = #{id} ;")
     List<PostEntity> getPost(int id);
 
-//    @Select("INSERT INTO posts (id, user_id, content, status, created_at, updated_at, deadline) VALUES (1, 1, 'テスト投稿', 1, '2023-11-10', '2023-11-10', '2023-12-10');")
-//    List<PostEntity> insertPost();
+//    @Insert("INSERT INTO posts (user_id, content, status, created_at, updated_at, deadline) VALUES (#{user_id}, #{content},'未完了', #{created_at}, #{updated_at}, #{deadline});")
+//    int insertPost(int user_id,varchar content,date created_at,date updated_at,date deadline );
 //
-//    @Select("DELETE FROM posts WHERE user_id = 1;")
-//    List<PostEntity> deletePost();
+//    @Delete("DELETE FROM posts WHERE id = #{id};")
+//    int deletePost(int id);
 //
-//    @Select("UPDATE posts SET user_id = 1,content = 'テスト投稿',status = 1,created_at = '2023-10-10',updated_at = '2023-10-10',deadline = '2023-11-10' WHERE user_id = 1;")
-//    List<PostEntity> updatePost();
+//    @Update("UPDATE posts SET content = #{content},status = #{content},updated_at = #{updated_at},deadline = #{deadline} WHERE id = #{id};")
+//    int updatePost(int id,varchar content,varchar content,date updated_at,date deadline);
 
 }
