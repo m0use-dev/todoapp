@@ -46,12 +46,12 @@
         <td><p class="" th:text="${post.created_at}" th:classappend="${lastWeek gt post.created_at}? ' '"></p></td>
         <td><p class="" th:text="${post.deadline}" th:classappend="${today gt post.deadline}? 'text-danger'"></p></td>
         <td>
-          <a class="me-1" th:href="@{/post/{id}/edit(id=${post.id})}">編集</a>
-          <form method="post" th:action="@{/post/{id}/delete(id=${post.id})}">
-            <input type="submit" value="削除" />
+          <a class="me-1 btn btn-primary" th:href="@{/post/{id}/edit(id=${post.id})}">編集</a>
+          <form class="me-1 d-inline-block" method="post" th:action="@{/post/{id}/delete(id=${post.id})}">
+            <input class="btn btn-danger" type="submit" value="削除" />
           </form>
-          <form method="post" th:if="${post.status != '完了'}" th:action="@{/post/{id}/completion(id=${post.id})}">
-            <input type="submit" value="完了" />
+          <form class="d-inline-block" method="post" th:if="${post.status != '完了'}" th:action="@{/post/{id}/completion(id=${post.id})}">
+            <input class="btn btn-primary" type="submit" value="完了" />
           </form>
         </td>
       </tr>

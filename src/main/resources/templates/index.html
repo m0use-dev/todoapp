@@ -2,6 +2,7 @@
 <html lang="ja"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
       layout:decorate="~{layout/layout}"
 >
 <head>
@@ -10,7 +11,23 @@
 <body>
 <section layout:fragment="content">
   <div class="container">
-    <h2 class="text-center">TODOリスト</h2>
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 class="display-5 fw-bold text-body-emphasis">TODOリスト</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">TODOアプリでタスク管理をサポートします。</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <ul class="navbar-nav flex-row">
+            <li class="nav-item ms-2" sec:authorize="hasRole('ADMIN')"><a class="btn btn-primary"
+                                                                          th:href="@{/admin}">管理画面</a></li>
+            <li class="nav-item ms-2" sec:authorize="isAuthenticated()"><a class="btn btn-primary"
+                                                                           th:href="@{/post}">リスト</a></li>
+            <li class="nav-item ms-2" sec:authorize="isAnonymous()"><a class="btn btn-primary"
+                                                                       th:href="@{/user/login}">ログイン</a></li>
+            <!--        <li class="nav-item ms-2" sec:authorize="isAnonymous()"><a class="btn btn-primary" th:href="@{/user/signup}">会員登録</a></li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 </body>

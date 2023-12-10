@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 
 import java.time.LocalDate;
 
@@ -41,7 +44,10 @@ public class PostController {
 
     @GetMapping("/create")
     @PreAuthorize("isAuthenticated()")
-    public String create() {
+    public String create(Model model) {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("userName", userName);
+        model.addAttribute("today", LocalDate.now());
         return "posts/create";
     }
 
@@ -55,7 +61,11 @@ public class PostController {
 //        if (post == null) {
 //            return "";
 //        }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+        model.addAttribute("userName", userName);
         model.addAttribute("postList", post);
+        model.addAttribute("today", LocalDate.now());
         return "posts/edit";
     }
 
