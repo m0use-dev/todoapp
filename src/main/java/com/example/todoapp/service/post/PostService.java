@@ -22,4 +22,7 @@ public class PostService {
         return postRepository.getPost(id);
     }
 
+    public int completionPost(int id) { return postRepository.completionPost(id); }
+
+    public int deletePost(int id) { return postRepository.deletePost(id); }
 }

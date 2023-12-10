@@ -32,16 +32,16 @@ public class PostController {
         return "posts/index";
     }
 
-    @GetMapping("/{id}/completion")
+    @RequestMapping(value="/{id}/completion")
     @PreAuthorize("isAuthenticated()")
     public String completion(@PathVariable int id) {
-
-        return "posts/completion";
+        postService.completionPost(id);
+        return "redirect:/post?completion";
     }
 
     @GetMapping("/create")
     @PreAuthorize("isAuthenticated()")
-    public String create(@PathVariable int id) {
+    public String create() {
         return "posts/create";
     }
 
@@ -59,10 +59,11 @@ public class PostController {
         return "posts/edit";
     }
 
-    @GetMapping("/{id}/delete")
+    @RequestMapping(value="/{id}/delete")
     @PreAuthorize("isAuthenticated()")
     public String delete(@PathVariable int id) {
-        return "posts/delete";
+        postService.deletePost(id);
+        return "redirect:/post?delete";
     }
 
 }

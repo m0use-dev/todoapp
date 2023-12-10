@@ -23,6 +23,9 @@ public interface PostRepository {
     @Delete("DELETE FROM posts WHERE id = #{id};")
     int deletePost(int id);
 
+    @Update("UPDATE posts SET status = '完了' WHERE id = #{id};")
+    int completionPost(int id);
+
     @Update("UPDATE posts SET content = #{content},status = #{content},updated_at = #{updated_at},deadline = #{deadline} WHERE id = #{id};")
     int updatePost(int id, String content, String status, Date updated_at, Date deadline);
 
