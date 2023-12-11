@@ -1,4 +1,6 @@
 package com.example.todoapp.service.post;
 
-public class PostStatus {
+public enum PostStatus {
+    未対応,
+    完了
 }

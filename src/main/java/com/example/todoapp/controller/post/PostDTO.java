@@ -25,7 +25,7 @@ public record PostDTO(
                 entity.id(),
                 entity.user_id(),
                 entity.content(),
-                entity.status(),
+                entity.status().name(),
                 entity.created_at(),
                 entity.updated_at(),
                 entity.deadline()

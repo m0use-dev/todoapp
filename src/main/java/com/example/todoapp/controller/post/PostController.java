@@ -3,10 +3,12 @@ package com.example.todoapp.controller.post;
 import com.example.todoapp.service.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -51,6 +53,15 @@ public class PostController {
         return "posts/create";
     }
 
+    @PostMapping("/create")
+    @PreAuthorize("isAuthenticated()")
+    public String createPost(Model model) {
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("userName", userName);
+        model.addAttribute("today", LocalDate.now());
+        return "posts/create";
+    }
+
     @GetMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     public String edit(@PathVariable int id, Model model) {
@@ -68,6 +79,15 @@ public class PostController {
         model.addAttribute("today", LocalDate.now());
         return "posts/edit";
     }
+
+//    @PostMapping("/{id}/edit")
+//    @PreAuthorize("isAuthenticated()")
+//    public String editPost(@PathVariable int id, Model model) {
+//        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+//        model.addAttribute("userName", userName);
+//        model.addAttribute("today", LocalDate.now());
+//        return "posts/create";
+//    }
 
     @RequestMapping(value="/{id}/delete")
     @PreAuthorize("isAuthenticated()")
