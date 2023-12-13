@@ -43,6 +43,4 @@ public class PostService {
         return postRepository.updatePost(newEntity);
     }
 
-
-//    public int updatePost(int id, String content, String status, Date updated_at, Date deadline) { return postRepository.updatePost(id,content,status,updated_at,deadline); }
 }
