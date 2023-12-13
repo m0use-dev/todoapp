@@ -16,4 +16,7 @@ public interface UserRepository {
     @Insert("INSERT INTO user(name, password, authority) VALUES(#{name}, ?, ?)")
     int insertUser(String name,String password,String authority);
 
+    @Select("SELECT id FROM authorities WHERE user_id = 1;")
+    int getUserId();
+
 }

@@ -82,21 +82,23 @@ public class PostController {
 //        }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
+        model.addAttribute("id", id);
         model.addAttribute("userName", userName);
         model.addAttribute("postList", post);
         model.addAttribute("today", LocalDate.now());
         return "posts/edit";
     }
 
-//    @PostMapping("/{id}/edit")
-//    @PreAuthorize("isAuthenticated()")
-//     @Transactional
-//    public String editPost(@PathVariable int id, Model model) {
-//        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-//        model.addAttribute("userName", userName);
-//        model.addAttribute("today", LocalDate.now());
-//        return "posts/create";
-//    }
+    @PostMapping("/{id}/edit")
+    @PreAuthorize("isAuthenticated()")
+     @Transactional
+    public String editPost(@PathVariable Long id,PostForm form, Model model) {
+        LocalDate today = LocalDate.now();
+        Long user_id = (long) '1';
+        var newEntity =  new PostEntity(id, (long) 1, form.content(), "未対応", LocalDate.parse("2023-11-10"), LocalDate.parse("2023-11-10"),form.deadline());
+        postService.updatePost(newEntity);
+        return "redirect:/post?update";
+    }
 
     @RequestMapping(value="/{id}/delete")
     @PreAuthorize("isAuthenticated()")

@@ -3,7 +3,6 @@ package com.example.todoapp.repository.post;
 import com.example.todoapp.service.post.PostEntity;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -40,10 +39,9 @@ public interface PostRepository {
     @Update("UPDATE posts SET status = '完了' WHERE id = #{id};")
     int completionPost(int id);
 
-//    @Update("""
-//    UPDATE posts SET content = #{content},status = #{content},updated_at = #{updated_at},deadline = #{deadline} WHERE id = #{id};
-//    """)
-//    int updatePost(int id, @Param("task") PostEntity newEntity);
-
-
+    @Update("""
+    UPDATE posts SET content = #{post.content},updated_at = #{post.updated_at},deadline = #{post.deadline}
+    WHERE id = #{post.id};
+    """)
+    int updatePost(@Param("post") PostEntity newEntity);
 }

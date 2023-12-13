@@ -11,24 +11,20 @@
 <main layout:fragment="content">
   <div class="container">
     <h2 class="text-center">編集いたしますか?</h2>
-    <form method="post" th:action="${/post/{id}/edit(id=${post.id})}">
+    <form method="post" th:action="@{/post/{id}/edit(id=${id})}">
       <div th:each="post : ${postList}">
-        <div class="mb-3">
-          <p class="">ユーザID</p>
-          <p class="" th:text="${post.user_id}"></p>
-        </div>
         <div class="mb-3">
           <label class="form-label" for="content">投稿内容</label>
           <input class="form-control" type="text" name="content" id="content" th:value="${post.content}"/>
         </div>
-        <div class="mb-3">
-          <label class="form-label" for="status">状態</label>
-          <input class="form-control" type="text" name="status" id="status" th:value="${post.status}"/>
-        </div>
-        <div class="mb-3">
-          <p class="">作成日</p>
-          <p class="" th:text="${post.created_at}"></p>
-        </div>
+<!--        <div class="mb-3">-->
+<!--          <label class="form-label" for="status">状態</label>-->
+<!--          <input class="form-control" type="text" name="status" id="status" th:value="${post.status}"/>-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--          <p class="">作成日</p>-->
+<!--          <p class="" th:text="${post.created_at}"></p>-->
+<!--        </div>-->
         <div class="mb-3">
           <label class="form-label" for="deadline">期日</label>
           <input class="form-control" type="text" name="deadline" id="deadline" th:value="${post.deadline}"/>
