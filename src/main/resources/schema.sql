@@ -8,7 +8,7 @@ CREATE TABLE users (
 CREATE TABLE authorities (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
-    authority TEXT NOT NULL
+    authority enum('ROLE_ADMIN', 'ROLE_USER') NOT NULL
 );
 
 CREATE TABLE posts (
