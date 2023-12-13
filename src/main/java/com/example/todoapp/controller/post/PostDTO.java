@@ -6,17 +6,17 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public record PostDTO(
-        @NotNull
-        int id,
-        @NotNull
-        int user_id,
-        @NotNull
+//        @NotNull
+        Long id,
+//        @NotNull
+        Long user_id,
+//        @NotNull
         String content,
-        @NotNull
+//        @NotNull
         String status,
-        @NotNull
+//        @NotNull
         LocalDate created_at,
-        @NotNull
+//        @NotNull
         LocalDate updated_at,
         LocalDate deadline
 ) {
@@ -25,7 +25,7 @@ public record PostDTO(
                 entity.id(),
                 entity.user_id(),
                 entity.content(),
-                entity.status().name(),
+                entity.status(),
                 entity.created_at(),
                 entity.updated_at(),
                 entity.deadline()

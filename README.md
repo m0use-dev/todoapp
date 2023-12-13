@@ -33,3 +33,5 @@
 | created_at | DATE | NO | 登録日 |
 | updated_at | DATE | NO | 更新日 |
 | deadline | DATE |  | 期限 |
+
+
