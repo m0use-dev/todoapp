@@ -29,6 +29,7 @@ public class PostController {
     @GetMapping
     @PreAuthorize("isAuthenticated")
     public String index(Model model) {
+//        String userauth = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
         var postList = postService.getPosts(userId)
@@ -46,9 +47,17 @@ public class PostController {
     @Transactional
     public String completion(@PathVariable int id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        
         int userId = userService.getUserId(username);
-        postService.completionPost(id);
-        return "redirect:/post?completion";
+
+        int contributorId = postService.getContributor(id);
+        if (userId == contributorId) {
+            postService.completionPost(id);
+            return "redirect:/post?completion";
+        } else {
+            return "redirect:/error";
+        }
+
     }
 
     @GetMapping("/create")
@@ -75,26 +84,32 @@ public class PostController {
                 .stream()
                 .map(PostDTO::toDTO)
                 .toList();
-//        if (post == null) {
-//            return "";
-//        }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
-        model.addAttribute("id", id);
-        model.addAttribute("postList", post);
-        return "posts/edit";
+        int contributorId = postService.getContributor(id);
+        if (userId == contributorId) {
+            model.addAttribute("id", id);
+            model.addAttribute("postList", post);
+            return "posts/edit";
+        } else {
+            return "redirect:/error";
+        }
     }
 
     @PostMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     @Transactional
-    public String editPost(@PathVariable Long id, PostForm form, Model model) {
+    public String editPost(@PathVariable int id, PostForm form, Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
-        Long user_id = (long) '1';
-        var newEntity = new PostEntity(id, (long) 1, form.content(), null, null, LocalDate.now(), form.deadline());
-        postService.updatePost(newEntity);
-        return "redirect:/post?update";
+        int contributorId = postService.getContributor(id);
+        if (userId == contributorId) {
+            var newEntity = new PostEntity((long) id, null, form.content(), null, null, LocalDate.now(), form.deadline());
+            postService.updatePost(newEntity);
+            return "redirect:/post?update";
+        } else {
+            return "redirect:/error";
+        }
     }
 
     @RequestMapping(value = "/{id}/delete")
@@ -106,5 +121,4 @@ public class PostController {
         postService.deletePost(id);
         return "redirect:/post?delete";
     }
-
 }

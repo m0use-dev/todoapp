@@ -14,7 +14,7 @@ public interface UserRepository {
     List<UserEntity> getUserAll();
 
     @Insert("INSERT INTO user(name, password, authority) VALUES(#{name}, ?, ?)")
-    int insertUser(String name,String password,String authority);
+    int insertUser(String name, String password, String authority);
 
     @Select("SELECT id FROM authorities WHERE username = #{username};")
     int getUserId(String username);

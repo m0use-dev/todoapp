@@ -43,4 +43,7 @@ public class PostService {
         return postRepository.updatePost(newEntity);
     }
 
+    public int getContributor(int id) {
+        return postRepository.getContributor(id);
+    }
 }
