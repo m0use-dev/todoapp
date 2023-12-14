@@ -16,4 +16,8 @@ public class UserService {
     public List<UserEntity> getUserAll() {
         return userRepository.getUserAll();
     }
+
+    public int getUserId(String username) {
+        return userRepository.getUserId(username);
+    }
 }
