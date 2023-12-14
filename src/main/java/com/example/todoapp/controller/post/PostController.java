@@ -63,7 +63,7 @@ public class PostController {
     public String createPost(PostForm form, Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
-        var newEntity = new PostEntity(null, (long) 1, form.content(), "未対応", LocalDate.now(), LocalDate.now(), form.deadline());
+        var newEntity = new PostEntity(null, (long) userId, form.content(), "未対応", LocalDate.now(), LocalDate.now(), form.deadline());
         postService.insertPost(newEntity);
         return "redirect:/post?create";
     }
