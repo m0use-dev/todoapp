@@ -13,8 +13,8 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
 
-    public List<PostEntity> getPosts() {
-        return postRepository.getPosts();
+    public List<PostEntity> getPosts(int userId) {
+        return postRepository.getPosts(userId);
     }
 
     public List<PostEntity> getPostsAll() {

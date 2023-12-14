@@ -31,7 +31,7 @@ public class PostController {
     public String index(Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
-        var postList = postService.getPosts()
+        var postList = postService.getPosts(userId)
                 .stream()
                 .map(PostDTO::toDTO)
                 .toList();

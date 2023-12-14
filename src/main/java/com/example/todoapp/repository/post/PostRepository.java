@@ -10,9 +10,9 @@ public interface PostRepository {
     @Select("""
     SELECT id,user_id,content,status,created_at,updated_at,deadline
     FROM posts
-    WHERE user_id = 1;
+    WHERE user_id = #{userId};
     """)
-    List<PostEntity> getPosts();
+    List<PostEntity> getPosts(int userId);
 
     @Select("""
     SELECT id,user_id,content,status,created_at,updated_at,deadline
@@ -26,6 +26,13 @@ public interface PostRepository {
     WHERE id = #{id} ;
     """)
     List<PostEntity> getPost(int id);
+
+    @Select("""
+    SELECT user_id
+    FROM posts
+    WHERE id = #{id} ;
+    """)
+    int getContributor(int id);
 
     @Insert("""
     INSERT INTO posts (user_id, content, status, created_at, updated_at, deadline)
@@ -44,4 +51,7 @@ public interface PostRepository {
     WHERE id = #{post.id};
     """)
     int updatePost(@Param("post") PostEntity newEntity);
+
+
+
 }
