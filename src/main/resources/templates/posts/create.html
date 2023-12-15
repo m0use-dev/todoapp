@@ -12,21 +12,13 @@
   <div class="container">
     <p class="">登録しますか?</p>
     <form method="post" th:action="@{/post/create}" >
-<!--      <div class="mb-3">-->
-<!--        <p class="">ユーザID</p>-->
-<!--        <p class="" th:text="${userName}">1</p>-->
-<!--      </div>-->
       <div class="mb-3">
-        <p class="">投稿内容</p>
+        <label class="form-label" for="content">投稿内容<span class="badge text-bg-danger">必須</span></label>
         <input class="form-control" type="text" name="content" id="content"/>
       </div>
-<!--      <div class="mb-3">-->
-<!--        <p class="">作成日</p>-->
-<!--        <p class="" th:text="${today}"></p>-->
-<!--      </div>-->
       <div class="mb-3">
-        <p class="">期日</p>
-        <input class="form-control" type="text" name="deadline" id="deadline"/>
+        <label class="form-label" for="deadline">期日</label>
+        <input class="form-control" type="date" name="deadline" id="deadline"/>
       </div>
       <div class="">
         <input class="btn btn-primary" type="submit" value="登録"/>
