@@ -56,7 +56,7 @@ public class PostController {
             postService.completionPost(id);
             return "redirect:/post?completion";
         } else {
-            return "redirect:/error";
+            return "redirect:/error/403";
         }
 
     }
@@ -96,7 +96,7 @@ public class PostController {
             model.addAttribute("postList", post);
             return "posts/edit";
         } else {
-            return "redirect:/error";
+            return "redirect:/error/403";
         }
     }
 
@@ -115,7 +115,7 @@ public class PostController {
             postService.updatePost(newEntity);
             return "redirect:/post?update";
         } else {
-            return "redirect:/error";
+            return "redirect:/error/403";
         }
     }
 
@@ -133,7 +133,7 @@ public class PostController {
             postService.deletePost(id);
             return "redirect:/post?delete";
         } else {
-            return "redirect:/error";
+            return "redirect:/error/403";
         }
     }
 }
