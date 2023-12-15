@@ -7,11 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -29,7 +27,6 @@ public class PostController {
     @GetMapping
     @PreAuthorize("isAuthenticated")
     public String index(Model model) {
-//        String userauth = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
         var postList = postService.getPosts(userId)
@@ -47,11 +44,15 @@ public class PostController {
     @Transactional
     public String completion(@PathVariable int id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        
+
         int userId = userService.getUserId(username);
 
         int contributorId = postService.getContributor(id);
-        if (userId == contributorId) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean hasRoleAdmin = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+        if (userId == contributorId || hasRoleAdmin) {
             postService.completionPost(id);
             return "redirect:/post?completion";
         } else {
@@ -62,14 +63,14 @@ public class PostController {
 
     @GetMapping("/create")
     @PreAuthorize("isAuthenticated()")
-    public String create(Model model) {
+    public String create(@ModelAttribute PostForm form, Model model) {
         return "posts/create";
     }
 
     @PostMapping("/create")
     @PreAuthorize("isAuthenticated()")
     @Transactional
-    public String createPost(PostForm form, Model model) {
+    public String createPost(@Validated PostForm form, Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
         var newEntity = new PostEntity(null, (long) userId, form.content(), "未対応", LocalDate.now(), LocalDate.now(), form.deadline());
@@ -79,7 +80,7 @@ public class PostController {
 
     @GetMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
-    public String edit(@PathVariable int id, Model model) {
+    public String edit(@PathVariable int id, @ModelAttribute PostForm form, Model model) {
         var post = postService.getPost(id)
                 .stream()
                 .map(PostDTO::toDTO)
@@ -87,7 +88,10 @@ public class PostController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
         int contributorId = postService.getContributor(id);
-        if (userId == contributorId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean hasRoleAdmin = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+        if (userId == contributorId || hasRoleAdmin) {
             model.addAttribute("id", id);
             model.addAttribute("postList", post);
             return "posts/edit";
@@ -99,11 +103,14 @@ public class PostController {
     @PostMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     @Transactional
-    public String editPost(@PathVariable int id, PostForm form, Model model) {
+    public String editPost(@PathVariable int id, @Validated PostForm form, Model model) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
         int contributorId = postService.getContributor(id);
-        if (userId == contributorId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean hasRoleAdmin = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+        if (userId == contributorId || hasRoleAdmin) {
             var newEntity = new PostEntity((long) id, null, form.content(), null, null, LocalDate.now(), form.deadline());
             postService.updatePost(newEntity);
             return "redirect:/post?update";
@@ -118,7 +125,15 @@ public class PostController {
     public String delete(@PathVariable int id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
-        postService.deletePost(id);
-        return "redirect:/post?delete";
+        int contributorId = postService.getContributor(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean hasRoleAdmin = authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
+        if (userId == contributorId || hasRoleAdmin) {
+            postService.deletePost(id);
+            return "redirect:/post?delete";
+        } else {
+            return "redirect:/error";
+        }
     }
 }
