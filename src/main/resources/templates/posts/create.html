@@ -10,7 +10,7 @@
 <body>
 <main layout:fragment="content">
   <div class="container">
-    <p class="">登録しますか?</p>
+    <p>登録しますか?</p>
     <form method="post" th:action="@{/post/create}" th:object="${postForm}">
       <div class="mb-3">
         <label class="form-label" for="content">投稿内容<span class="badge text-bg-danger">必須</span></label>
@@ -21,7 +21,7 @@
       <div class="mb-3">
         <label class="form-label" for="deadline">期日</label>
         <input class="form-control" type="date" id="deadline" name="deadline" th:value="*{deadline}"
-               th:classappend="${#fields.hasErrors('deadline') ? 'is-invalid' : ''}" />
+               th:classappend="${#fields.hasErrors('deadline') ? 'is-invalid' : ''}"/>
         <span class="invalid-feedback" th:errors="*{deadline}"></span>
       </div>
       <div class="">
