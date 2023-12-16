@@ -73,9 +73,6 @@ public class PostController {
     @Transactional
     public String createPost(@Validated PostForm form,BindingResult bindingResult ,Model model) {
         if(bindingResult.hasErrors()){
-            if(form.deadline() != null ) {
-                model.addAttribute("deadlineString", form.deadline().toString());
-            }
             return create(form,model);
         }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -111,9 +108,6 @@ public class PostController {
     @Transactional
     public String editPost(@PathVariable int id, @Validated PostForm form, BindingResult bindingResult,Model model) {
         if(bindingResult.hasErrors()){
-            if(form.deadline() != null ) {
-                model.addAttribute("deadlineString", form.deadline().toString());
-            }
             return edit(id,form,model);
         }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
