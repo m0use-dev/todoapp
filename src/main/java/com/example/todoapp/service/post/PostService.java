@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class PostService {
         return postRepository.getPostsAll();
     }
 
-    public List<PostEntity> getPost(int id) {
+    public Optional<PostEntity> getPost(long id) {
         return postRepository.getPost(id);
     }
 

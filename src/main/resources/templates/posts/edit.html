@@ -11,20 +11,20 @@
 <main layout:fragment="content">
   <div class="container">
     <h2 class="text-center">編集いたしますか?</h2>
-    <form method="post" th:action="@{/post/{id}/edit(id=${id})}">
-      <div th:each="post : ${postList}">
+    <form method="post" th:action="@{/post/{id}/edit(id=${id})}" th:object="${postForm}">
         <div class="mb-3">
           <label class="form-label" for="content">投稿内容<span class="badge text-bg-danger">必須</span></label>
-          <input class="form-control" type="text" name="content" id="content" th:value="${post.content}"/>
+          <input class="form-control" type="text" id="content" th:field="*{content}" th:errorclass="is-invalid"/>
+          <span class="invalid-feedback" th:errors="*{content}"></span>
         </div>
         <div class="mb-3">
           <label class="form-label" for="deadline">期日</label>
-          <input class="form-control" type="date" name="deadline" id="deadline" th:value="${post.deadline}"/>
+          <input class="form-control" type="date" id="deadline" th:field="*{deadline}" th:errorclass="is-invalid"/>
+          <span class="invalid-feedback" th:errors="*{deadline}"></span>
         </div>
         <div class="">
           <input class="btn btn-primary" type="submit" value="編集完了"/>
         </div>
-      </div>
     </form>
   </div>
 </main>

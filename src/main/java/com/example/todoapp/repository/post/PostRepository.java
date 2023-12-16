@@ -4,6 +4,7 @@ import com.example.todoapp.service.post.PostEntity;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface PostRepository {
@@ -23,9 +24,9 @@ public interface PostRepository {
     @Select("""
             SELECT id,user_id,content,status,created_at,updated_at,deadline
             FROM posts
-            WHERE id = #{id} ;
+            WHERE id = #{postId} ;
             """)
-    List<PostEntity> getPost(int id);
+    Optional<PostEntity> getPost(@Param("postId") long postId);
 
     @Select("""
             SELECT user_id

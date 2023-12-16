@@ -87,11 +87,10 @@ public class PostController {
 
     @GetMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
-    public String edit(@PathVariable int id, @ModelAttribute PostForm form, Model model) {
+    public String edit(@PathVariable("id") int id, @ModelAttribute PostForm form, Model model) {
         var post = postService.getPost(id)
-                .stream()
-                .map(PostDTO::toDTO)
-                .toList();
+                .map(PostForm::fromEntity)
+                .orElseThrow(PostNotFoundException::new);
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
         int contributorId = postService.getContributor(id);
@@ -100,7 +99,7 @@ public class PostController {
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
         if (userId == contributorId || hasRoleAdmin) {
             model.addAttribute("id", id);
-            model.addAttribute("postList", post);
+            model.addAttribute("postForm", post);
             return "posts/edit";
         } else {
             return "redirect:/error/403";
