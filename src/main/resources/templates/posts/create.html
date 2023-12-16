@@ -14,12 +14,14 @@
     <form method="post" th:action="@{/post/create}" th:object="${postForm}">
       <div class="mb-3">
         <label class="form-label" for="content">投稿内容<span class="badge text-bg-danger">必須</span></label>
-        <input class="form-control" type="text" id="content" th:field="*{content}"  th:errorclass="is-invalid" placeholder="例:TODOアプリを作成" />
+        <input class="form-control" type="text" id="content" th:field="*{content}" th:errorclass="is-invalid"
+               placeholder="例:TODOアプリを作成"/>
         <span class="invalid-feedback" th:errors="*{content}"></span>
       </div>
       <div class="mb-3">
         <label class="form-label" for="deadline">期日</label>
-        <input class="form-control" type="text" id="deadline" th:field="*{deadline}" th:errorclass="is-invalid" placeholder="例:2023-1-1" />
+        <input class="form-control" type="date" id="deadline" name="deadline" th:value="*{deadline}"
+               th:classappend="${#fields.hasErrors('deadline') ? 'is-invalid' : ''}" />
         <span class="invalid-feedback" th:errors="*{deadline}"></span>
       </div>
       <div class="">

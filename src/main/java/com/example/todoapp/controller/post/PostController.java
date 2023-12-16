@@ -71,9 +71,9 @@ public class PostController {
     @PostMapping("/create")
     @PreAuthorize("isAuthenticated()")
     @Transactional
-    public String createPost(@Validated PostForm form,BindingResult bindingResult ,Model model) {
-        if(bindingResult.hasErrors()){
-            return create(form,model);
+    public String createPost(@Validated PostForm form, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return create(form, model);
         }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
@@ -106,9 +106,9 @@ public class PostController {
     @PostMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     @Transactional
-    public String editPost(@PathVariable int id, @Validated PostForm form, BindingResult bindingResult,Model model) {
-        if(bindingResult.hasErrors()){
-            return edit(id,form,model);
+    public String editPost(@PathVariable int id, @Validated PostForm form, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return edit(id, form, model);
         }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int userId = userService.getUserId(username);
@@ -117,7 +117,6 @@ public class PostController {
         boolean hasRoleAdmin = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
         if (userId == contributorId || hasRoleAdmin) {
-
             var newEntity = new PostEntity((long) id, null, form.content(), null, null, LocalDate.now(), form.deadline());
             postService.updatePost(newEntity);
             return "redirect:/post?update";
