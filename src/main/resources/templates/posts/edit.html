@@ -19,7 +19,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="deadline">期日</label>
-          <input class="form-control" type="date" id="deadline" th:field="*{deadline}" th:errorclass="is-invalid"/>
+          <input class="form-control" type="date" id="deadline" name="deadline" th:value="${deadlineString}" th:errorclass="is-invalid" />
           <span class="invalid-feedback" th:errors="*{deadline}"></span>
         </div>
         <div class="">

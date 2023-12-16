@@ -10,7 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.time.LocalDate;
 
 public record PostForm(
-        @NotNull
+        @NotBlank
         @Size(max = 50,message="50文字以内で入力してください")
         String content,
         LocalDate deadline
