@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
+<head>
+  <title>管理者用ユーザー一覧</title>
+</head>
+<body>
+<main layout:fragment="content">
+  <div class="container">
+    <h2 class="text-center">管理者用ユーザー一覧</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">ユーザID</th>
+        <th scope="col">ユーザー名</th>
+        <th scope="col">ユーザー権限</th>
+      </tr>
+      </thead>
+      <tr th:each="user : ${userList}">
+        <td><p th:text="${user.id}"></p></td>
+        <td><p th:text="${user.username}"></p></td>
+        <td><p th:text="${user.authority}"></p></td>
+      </tr>
+    </table>
+  </div>
+</main>
+</body>
+</html>
