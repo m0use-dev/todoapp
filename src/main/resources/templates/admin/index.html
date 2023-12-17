@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
+<head>
+  <title>管理画面</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="container">
+    <h2 class="text-center">管理画面</h2>
+    <ul>
+      <li><a th:href="@{/admin/posts}">記事一覧</a></li>
+      <li><a th:href="@{/admin/users}">ユーザー一覧</a></li>
+    </ul>
+  </div>
+</section>
+</body>
+</html>

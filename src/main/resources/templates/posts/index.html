@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
+<head>
+  <title>トップページ</title>
+</head>
+<body>
+<section layout:fragment="content">
+  <div class="container">
+    <h2 class="text-center">TODOリスト</h2>
+    <div th:if="${param.create}" class="alert alert-primary alert-dismissible fade show" role="alert">
+      タスクを追加しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${param.update}" class="alert alert-primary alert-dismissible fade show" role="alert">
+      タスクを更新しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${param.completion}" class="alert alert-primary alert-dismissible fade show" role="alert">
+      タスクを完了しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${param.delete}" class="alert alert-danger alert-dismissible fade show" role="alert">
+      タスクを削除しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <a class="btn btn-primary" th:href="@{/post/create}">タスクの作成</a>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">投稿内容</th>
+        <th scope="col">状態</th>
+        <th scope="col">作成日</th>
+        <th scope="col">期日</th>
+        <th scope="col">操作</th>
+      </tr>
+      </thead>
+      <tr th:each="post : ${postList}">
+        <td><p th:text="${post.content}"></p></td>
+        <td><p th:text="${post.status}"></p></td>
+        <td><p th:text="${post.created_at}" th:classappend="${lastWeek gt post.created_at}? ' '"></p></td>
+        <td><p th:text="${post.deadline}" th:classappend="${today gt post.deadline}? 'text-danger'"></p></td>
+        <td>
+          <a class="me-1 btn btn-primary" th:href="@{/post/{id}/edit(id=${post.id})}">編集</a>
+          <form class="me-1 d-inline-block" method="post"
+                th:action="@{/post/{id}/delete(id=${post.id})}"
+                onclick="return confirm('タスクを削除にしますか？')"
+          >
+            <input class="btn btn-danger" type="submit" value="削除"/>
+          </form>
+          <form class="d-inline-block" method="post" th:if="${post.status != '完了'}"
+                th:action="@{/post/{id}/completion(id=${post.id})}"
+                onclick="return confirm('タスクを完了にしますか？')"
+          >
+            <input class="btn btn-primary" type="submit" value="完了"/>
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+</body>
+</html>
