@@ -12,9 +12,10 @@
 ### usersテーブル
 | フィールド | タイプ | Null | 備考 |
 | ---- | ---- | ---- | ---- |
-| id | VARCHAR(255) | NO |  |
+| id | INT | NO |  |
 | username | VARCHAR(255) | NO |  |
-| password | TINYINT | NO |  |
+| password | VARCHAR(255) | NO |  |
+| enabled | TINYINT | NO |  |
 
 ### authoritiesテーブル
 | フィールド | タイプ | Null | 備考 |
