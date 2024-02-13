@@ -10,14 +10,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    public List<UserEntity> getUser() {
-        return userRepository.getUser();
-    }
+
     public List<UserEntity> getUserAll() {
         return userRepository.getUserAll();
-    }
-
-    public int getUserId(String username) {
-        return userRepository.getUserId(username);
     }
 }
