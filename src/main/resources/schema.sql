@@ -13,11 +13,11 @@ CREATE TABLE authorities (
 
 CREATE TABLE posts (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
     content VARCHAR(255) NOT NULL,
     status VARCHAR(10) NOT NULL,
     created_at DATE NOT NULL,
     updated_at DATE NOT NULL,
     deadline DATE,
-    FOREIGN KEY (user_id) REFERENCES users(username)
+    FOREIGN KEY (username) REFERENCES users(username)
 );

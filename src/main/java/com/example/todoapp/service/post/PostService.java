@@ -13,8 +13,8 @@ import java.util.Optional;
 public class PostService {
     private final PostRepository postRepository;
 
-    public List<PostEntity> getPosts(String userId) {
-        return postRepository.getPosts(userId);
+    public List<PostEntity> getPosts(String username) {
+        return postRepository.getPosts(username);
     }
 
     public List<PostEntity> getPostsAll() {

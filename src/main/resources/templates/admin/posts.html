@@ -23,7 +23,7 @@
       </tr>
       </thead>
       <tr th:each="post : ${postList}">
-        <td><p th:text="${post.user_id}"></p></td>
+        <td><p th:text="${post.username}"></p></td>
         <td><p th:text="${post.content}"></p></td>
         <td><p th:text="${post.status}"></p></td>
         <td><p th:text="${post.created_at}" th:classappend="${lastWeek gt post.created_at}? ' '"></p></td>

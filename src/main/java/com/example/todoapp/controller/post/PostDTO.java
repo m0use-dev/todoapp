@@ -9,7 +9,7 @@ public record PostDTO(
         @NotNull
         Long id,
         @NotNull
-        String user_id,
+        String username,
         @NotNull
         String content,
         @NotNull
@@ -23,7 +23,7 @@ public record PostDTO(
     public static PostDTO toDTO(PostEntity entity) {
         return new PostDTO(
                 entity.id(),
-                entity.user_id(),
+                entity.username(),
                 entity.content(),
                 entity.status(),
                 entity.created_at(),
