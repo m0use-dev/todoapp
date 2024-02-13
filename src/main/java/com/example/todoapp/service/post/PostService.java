@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,11 @@ public class PostService {
     public int completionPost(int id) {
         return postRepository.completionPost(id);
     }
+
+    public LocalDate getLastDate(LocalDate today) {
+        return today.minusDays(7);
+    }
+
 
     public int deletePost(int id) {
         return postRepository.deletePost(id);

@@ -34,8 +34,10 @@ public class PostController {
                 .map(PostDTO::toDTO)
                 .toList();
         model.addAttribute("postList", postList);
-        model.addAttribute("lastWeek", LocalDate.now().minusDays(7));
-        model.addAttribute("today", LocalDate.now());
+        LocalDate today = LocalDate.now();
+        model.addAttribute("today", today);
+        LocalDate lastWeek = postService.getLastDate(today);
+        model.addAttribute("lastWeek", lastWeek);
         return "posts/index";
     }
 
