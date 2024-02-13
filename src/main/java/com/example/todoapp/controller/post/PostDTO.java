@@ -9,7 +9,7 @@ public record PostDTO(
         @NotNull
         Long id,
         @NotNull
-        Long user_id,
+        String user_id,
         @NotNull
         String content,
         @NotNull

@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +13,7 @@ import java.util.Optional;
 public class PostService {
     private final PostRepository postRepository;
 
-    public List<PostEntity> getPosts(int userId) {
+    public List<PostEntity> getPosts(String userId) {
         return postRepository.getPosts(userId);
     }
 
@@ -44,7 +43,7 @@ public class PostService {
         return postRepository.updatePost(newEntity);
     }
 
-    public int getContributor(int id) {
+    public String getContributor(int id) {
         return postRepository.getContributor(id);
     }
 }

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public record PostEntity(
         Long id,
-        Long user_id,
+        String user_id,
         String content,
         String status,
         LocalDate created_at,

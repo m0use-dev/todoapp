@@ -28,8 +28,7 @@ public class PostController {
     @GetMapping
     @PreAuthorize("isAuthenticated")
     public String index(Model model) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        int userId = userService.getUserId(username);
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
         var postList = postService.getPosts(userId)
                 .stream()
                 .map(PostDTO::toDTO)
@@ -44,11 +43,8 @@ public class PostController {
     @PreAuthorize("isAuthenticated()")
     @Transactional
     public String completion(@PathVariable int id) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        int userId = userService.getUserId(username);
-
-        int contributorId = postService.getContributor(id);
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        String contributorId = postService.getContributor(id);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean hasRoleAdmin = authentication.getAuthorities().stream()
@@ -75,9 +71,8 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             return create(form, model);
         }
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        int userId = userService.getUserId(username);
-        var newEntity = new PostEntity(null, (long) userId, form.content(), "未完了", LocalDate.now(), LocalDate.now(), form.deadline());
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        var newEntity = new PostEntity(null, userId, form.content(), "未完了", LocalDate.now(), LocalDate.now(), form.deadline());
         postService.insertPost(newEntity);
         return "redirect:/post?create";
     }
@@ -88,9 +83,8 @@ public class PostController {
         var post = postService.getPost(id)
                 .map(PostForm::fromEntity)
                 .orElseThrow(PostNotFoundException::new);
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        int userId = userService.getUserId(username);
-        int contributorId = postService.getContributor(id);
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        String contributorId = postService.getContributor(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean hasRoleAdmin = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
@@ -110,9 +104,8 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             return edit(id, form, model);
         }
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        int userId = userService.getUserId(username);
-        int contributorId = postService.getContributor(id);
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        String contributorId = postService.getContributor(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean hasRoleAdmin = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
@@ -129,9 +122,8 @@ public class PostController {
     @PreAuthorize("isAuthenticated()")
     @Transactional
     public String delete(@PathVariable int id) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        int userId = userService.getUserId(username);
-        int contributorId = postService.getContributor(id);
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        String contributorId = postService.getContributor(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean hasRoleAdmin = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));

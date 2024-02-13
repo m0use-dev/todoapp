@@ -13,7 +13,7 @@ public interface PostRepository {
             FROM posts
             WHERE user_id = #{userId};
             """)
-    List<PostEntity> getPosts(int userId);
+    List<PostEntity> getPosts(String userId);
 
     @Select("""
             SELECT id,user_id,content,status,created_at,updated_at,deadline
@@ -33,7 +33,7 @@ public interface PostRepository {
             FROM posts
             WHERE id = #{id} ;
             """)
-    int getContributor(int id);
+    String getContributor(int id);
 
     @Insert("""
             INSERT INTO posts (user_id, content, status, created_at, updated_at, deadline)
