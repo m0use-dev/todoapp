@@ -6,24 +6,24 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public record PostDTO(
-//        @NotNull
+        @NotNull
         Long id,
-//        @NotNull
-        Long user_id,
-//        @NotNull
+        @NotNull
+        String username,
+        @NotNull
         String content,
-//        @NotNull
+        @NotNull
         String status,
-//        @NotNull
+        @NotNull
         LocalDate created_at,
-//        @NotNull
+        @NotNull
         LocalDate updated_at,
         LocalDate deadline
 ) {
     public static PostDTO toDTO(PostEntity entity) {
         return new PostDTO(
                 entity.id(),
-                entity.user_id(),
+                entity.username(),
                 entity.content(),
                 entity.status(),
                 entity.created_at(),

@@ -1,6 +1,6 @@
 CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(255) NOT NULL,
+    id INT AUTO_INCREMENT,
+    username VARCHAR(255) PRIMARY KEY NOT NULL,
     password VARCHAR(255) NOT NULL,
     enabled TINYINT NOT NULL
 );
@@ -13,11 +13,11 @@ CREATE TABLE authorities (
 
 CREATE TABLE posts (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
+    username VARCHAR(255) NOT NULL,
     content VARCHAR(255) NOT NULL,
     status VARCHAR(10) NOT NULL,
     created_at DATE NOT NULL,
     updated_at DATE NOT NULL,
     deadline DATE,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (username) REFERENCES users(username)
 );
