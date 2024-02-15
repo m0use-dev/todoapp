@@ -4,11 +4,8 @@ import com.example.todoapp.service.user.UserEntity;
 import jakarta.validation.constraints.NotNull;
 
 public record UserDTO (
-        @NotNull
         int id,
-        @NotNull
         String username,
-        @NotNull
         String authority
 ){
     public static UserDTO toDTO(UserEntity entity) {

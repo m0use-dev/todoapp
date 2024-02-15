@@ -6,17 +6,11 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public record PostDTO(
-        @NotNull
         Long id,
-        @NotNull
         String username,
-        @NotNull
         String content,
-        @NotNull
         String status,
-        @NotNull
         LocalDate created_at,
-        @NotNull
         LocalDate updated_at,
         LocalDate deadline
 ) {
