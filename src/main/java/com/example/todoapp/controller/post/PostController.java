@@ -36,7 +36,7 @@ public class PostController {
         model.addAttribute("postList", postList);
         LocalDate today = LocalDate.now();
         model.addAttribute("today", today);
-        LocalDate lastWeek = postService.getLastDate(today);
+        LocalDate lastWeek = postService.getLastWeek(today);
         model.addAttribute("lastWeek", lastWeek);
         return "posts/index";
     }
