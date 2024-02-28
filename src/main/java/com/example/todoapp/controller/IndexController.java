@@ -13,4 +13,10 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/hello")
+    @PreAuthorize("permitAll")
+    public String hello() {
+        return "hello";
+    }
 }
