@@ -23,7 +23,6 @@ import java.time.LocalDate;
 public class PostController {
 
     private final PostService postService;
-    private final UserService userService;
 
     @GetMapping
     @PreAuthorize("isAuthenticated")
