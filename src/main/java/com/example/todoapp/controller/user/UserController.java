@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
 
     @RequestMapping("/signup")
     @PreAuthorize("isAnonymous()")
