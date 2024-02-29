@@ -1,5 +1,6 @@
 package com.example.todoapp;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,6 +16,7 @@ public class PostControllerTest {
 
 
     @Test
+    @DisplayName("未ログインが記事一覧ページにアクセスしたさいにログインページにリダイレクト確認")
     void 未ログインが記事一覧ページにアクセスしたさいにログインページにリダイレクト確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
                         MockMvcRequestBuilders.get("/post"))
@@ -23,6 +25,7 @@ public class PostControllerTest {
     }
     @WithMockUser(roles="USER")
     @Test
+    @DisplayName("ユーザー権限が記事一覧ページにアクセス可能確認")
     void ユーザー権限が記事一覧ページにアクセス可能確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
                         MockMvcRequestBuilders.get("/post"))

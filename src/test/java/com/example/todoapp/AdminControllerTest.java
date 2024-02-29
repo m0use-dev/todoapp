@@ -1,5 +1,6 @@
 package com.example.todoapp;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,6 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class AdminControllerTest {
     @WithMockUser(roles="ADMIN")
     @Test
+    @DisplayName("管理者権限が管理者用ページにアクセス可能確認")
     void 管理者権限が管理者用ページにアクセス可能確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
                         MockMvcRequestBuilders.get("/admin"))
@@ -23,6 +25,7 @@ public class AdminControllerTest {
 
     @WithMockUser(roles="USER")
     @Test
+    @DisplayName("ユーザー権限が管理者用ページにアクセス不可確認")
     void ユーザー権限が管理者用ページにアクセス不可確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
                         MockMvcRequestBuilders.get("/admin"))
@@ -32,6 +35,7 @@ public class AdminControllerTest {
 
     @WithMockUser(roles="ADMIN")
     @Test
+    @DisplayName("管理者権限が管理者用投稿一覧ページにアクセス可能確認")
     void 管理者権限が管理者用投稿一覧ページにアクセス可能確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
                         MockMvcRequestBuilders.get("/admin/posts"))
@@ -41,6 +45,7 @@ public class AdminControllerTest {
 
     @WithMockUser(roles="USER")
     @Test
+    @DisplayName("ユーザー権限が管理者用投稿一覧ページにアクセス不可確認")
     void ユーザー権限が管理者用投稿一覧ページにアクセス不可確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
                         MockMvcRequestBuilders.get("/admin/posts"))
@@ -50,6 +55,7 @@ public class AdminControllerTest {
 
     @WithMockUser(roles="ADMIN")
     @Test
+    @DisplayName("管理者権限が管理者用ユーザー一覧ページにアクセス可能確認")
     void 管理者権限が管理者用ユーザー一覧ページにアクセス可能確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
                         MockMvcRequestBuilders.get("/admin/users"))
@@ -59,6 +65,7 @@ public class AdminControllerTest {
 
     @WithMockUser(roles="USER")
     @Test
+    @DisplayName("ユーザー権限が管理者用ユーザー一覧ページにアクセス不可確認")
     void ユーザー権限が管理者用ユーザー一覧ページにアクセス不可確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
                         MockMvcRequestBuilders.get("/admin/users"))
