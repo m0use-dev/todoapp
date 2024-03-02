@@ -1,4 +1,4 @@
-package com.example.todoapp;
+package com.example.todoapp.controller;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
