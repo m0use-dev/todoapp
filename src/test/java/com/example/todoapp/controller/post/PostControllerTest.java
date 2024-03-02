@@ -32,4 +32,12 @@ public class PostControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk()
                 );
     }
+
+    @WithMockUser(roles="USER")
+    @Test
+    @DisplayName("記事一覧ページの記事リストmodelの動作確認")
+    void 記事一覧ページの記事リストmodelの動作確認(@Autowired MockMvc mvc) throws Exception {
+
+    }
+
 }

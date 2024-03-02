@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class PostServiceTest {
     @Test
     @DisplayName("getLastWeekメソッドの動作確認")
-    void getLastWeek(){
+    void getLastWeekメソッドの動作確認() {
         PostService postService = new PostService(null);
         LocalDate today = LocalDate.of(2024, 3, 2);
         LocalDate expected = LocalDate.of(2024, 2, 24);
