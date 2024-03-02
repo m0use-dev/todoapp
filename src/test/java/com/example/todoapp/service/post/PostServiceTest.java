@@ -1,21 +1,23 @@
 package com.example.todoapp.service.post;
 
 import com.example.todoapp.repository.post.PostRepository;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
+@SpringBootTest
 public class PostServiceTest {
     @Autowired
-    private PostService postService = new PostService(null);
+    private PostService postService;
+
+    @MockBean
+    private PostRepository postRepository;
 
     @Test
     @DisplayName("getLastWeekメソッドの動作確認")
@@ -25,5 +27,9 @@ public class PostServiceTest {
         LocalDate actual = postService.getLastWeek(today);
         assertEquals(expected, actual);
     }
-
+//    @Test
+//    @DisplayName("データベースチェック")
+//    void データベースチェック() {
+//        var expected = postService.getPost(1);
+//    }
 }
