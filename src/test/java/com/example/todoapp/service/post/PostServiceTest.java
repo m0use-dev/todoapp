@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,6 +21,7 @@ public class PostServiceTest {
     private PostRepository postRepository;
 
     @Test
+    @Transactional
     @DisplayName("getLastWeekメソッドの動作確認")
     void getLastWeekメソッドの動作確認() {
         LocalDate today = LocalDate.of(2024, 3, 2);
@@ -28,6 +30,7 @@ public class PostServiceTest {
         assertEquals(expected, actual);
     }
 //    @Test
+//    @Transactional
 //    @DisplayName("データベースチェック")
 //    void データベースチェック() {
 //        var expected = postService.getPost(1);
