@@ -42,6 +42,7 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
 	testImplementation 'com.github.springtestdbunit:spring-test-dbunit:1.3.0'
 	testImplementation 'org.dbunit:dbunit:2.7.3'
+	testImplementation 'com.h2database:h2'
 	implementation group: 'org.webjars', name: 'bootstrap', version: '5.2.3'
 	implementation group: 'org.webjars', name: 'webjars-locator-core', version: '0.52'
 	implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.2.1'
