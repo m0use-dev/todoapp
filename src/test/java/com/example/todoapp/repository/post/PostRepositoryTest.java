@@ -19,25 +19,25 @@ class PostRepositoryTest {
 
     @Test
     @DatabaseSetup("sampleData.xml")
-    @DisplayName("")
+    @DisplayName("getPostsメソッドの動作確認")
     public void getPostsメソッドの動作確認() {
     }
 
     @Test
     @DatabaseSetup("sampleData.xml")
-    @DisplayName("")
+    @DisplayName("getPostsAllメソッドの動作確認")
     public void getPostsAllメソッドの動作確認() {
     }
 
     @Test
     @DatabaseSetup("sampleData.xml")
-    @DisplayName("")
+    @DisplayName("getPostメソッドの動作確認")
     public void getPostメソッドの動作確認() {
     }
 
     @Test
     @DatabaseSetup("sampleData.xml")
-    @DisplayName("")
+    @DisplayName("getContributorメソッドの動作確認")
     public void getContributorメソッドの動作確認() {
         String result = postRepository.getContributor(1);
         assertThat(result).isEqualTo("user1");
@@ -45,13 +45,13 @@ class PostRepositoryTest {
 
     @Test
     @DatabaseSetup("sampleData.xml")
-    @DisplayName("")
+    @DisplayName("insertPostメソッドの動作確認")
     public void insertPostメソッドの動作確認() {
     }
 
     @Test
     @DatabaseSetup("sampleData.xml")
-    @DisplayName("")
+    @DisplayName("deletePostメソッドの動作確認")
     public void deletePostメソッドの動作確認() {
     }
 

@@ -3,6 +3,7 @@ package com.example.todoapp.repository.user;
 import com.example.todoapp.service.user.UserEntity;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,4 +25,9 @@ class UserRepositoryTest {
         this.userRepository = userRepository;
     }
 
+    @Test
+    @DatabaseSetup("sampleData.xml")
+    @DisplayName("getUserAllメソッドの動作確認")
+    public void getUserAllメソッドの動作確認() {
+    }
 }
