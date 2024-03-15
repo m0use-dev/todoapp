@@ -29,5 +29,7 @@ class UserRepositoryTest {
     @DatabaseSetup("sampleData.xml")
     @DisplayName("getUserAllメソッドの動作確認")
     public void getUserAllメソッドの動作確認() {
+        List<UserEntity> users = userRepository.getUserAll();
+        assertThat(users.size()).isEqualTo(4);
     }
 }
