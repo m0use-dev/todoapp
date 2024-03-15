@@ -1,5 +1,6 @@
 package com.example.todoapp.controller.post;
 
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,13 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -33,11 +41,13 @@ public class PostControllerTest {
                 );
     }
 
-    @WithMockUser(roles="USER")
+    @WithMockUser("user1")
     @Test
+    @DatabaseSetup("sampleData.xml")
     @DisplayName("記事一覧ページの記事リストmodelの動作確認")
     void 記事一覧ページの記事リストmodelの動作確認(@Autowired MockMvc mvc) throws Exception {
-
+        mvc.perform(get("/post"))
+                 .andExpect(status().isOk())
+                 .andExpect(model().attributeExists("postList"));
     }
-
 }
