@@ -6,13 +6,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Transactional
 class PostRepositoryTest {
     private final PostRepository postRepository;
 
@@ -57,6 +60,10 @@ class PostRepositoryTest {
     @DatabaseSetup("sampleData.xml")
     @DisplayName("insertPostメソッドの動作確認")
     public void insertPostメソッドの動作確認() {
+        var newEntity = new PostEntity(null, "user1", "テスト投稿21", "未完了", LocalDate.of(2023, 12, 10), LocalDate.of(2023, 12, 10), LocalDate.of(2023, 12, 25));
+        postRepository.insertPost(newEntity);
+        Optional<PostEntity> result = postRepository.getPost(21);
+        assertThat(result.get().content()).isEqualTo("テスト投稿21");
 
     }
 
@@ -64,18 +71,23 @@ class PostRepositoryTest {
     @DatabaseSetup("sampleData.xml")
     @DisplayName("deletePostメソッドの動作確認")
     public void deletePostメソッドの動作確認() {
-
+        int result = postRepository.deletePost(1);
     }
 
     @Test
     @DatabaseSetup("sampleData.xml")
     @DisplayName("completionPostメソッドの動作確認")
     public void completionPostメソッドの動作確認() {
+        int result = postRepository.completionPost(1);
     }
 
     @Test
     @DatabaseSetup("sampleData.xml")
     @DisplayName("updatePostメソッドの動作確認")
     public void updatePostメソッドの動作確認() {
+        var newEntity = new PostEntity((long) 1, null, "コンテンツ変更", null, null, LocalDate.of(2023, 12, 10), LocalDate.of(2023, 12, 25));
+        postRepository.updatePost(newEntity);
+        Optional<PostEntity> result = postRepository.getPost(1);
+        assertThat(result.get().content()).isEqualTo("コンテンツ変更");
     }
 }
