@@ -98,12 +98,13 @@ public class PostController {
         }
     }
 
-    @PostMapping("/{id}/edit")
+    @PutMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     @Transactional
     public String editPost(@PathVariable int id, @Validated PostForm form, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return edit(id, form, model);
+            model.addAttribute("postForm", form);
+            return "posts/edit";
         }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         String contributorId = postService.getContributor(id);
