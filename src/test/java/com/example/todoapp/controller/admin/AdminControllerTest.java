@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class AdminControllerTest {
-    @WithMockUser(roles="ADMIN")
+    @WithMockUser(roles = "ADMIN")
     @Test
     @DisplayName("管理者権限が管理者用ページにアクセス可能確認")
     void 管理者権限が管理者用ページにアクセス可能確認(@Autowired MockMvc mvc) throws Exception {
@@ -25,7 +25,7 @@ public class AdminControllerTest {
                 );
     }
 
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles = "USER")
     @Test
     @DisplayName("ユーザー権限が管理者用ページにアクセス不可確認")
     void ユーザー権限が管理者用ページにアクセス不可確認(@Autowired MockMvc mvc) throws Exception {
@@ -35,7 +35,7 @@ public class AdminControllerTest {
                 );
     }
 
-    @WithMockUser(roles="ADMIN")
+    @WithMockUser(roles = "ADMIN")
     @Test
     @DisplayName("管理者権限が管理者用投稿一覧ページにアクセス可能確認")
     void 管理者権限が管理者用投稿一覧ページにアクセス可能確認(@Autowired MockMvc mvc) throws Exception {
@@ -45,7 +45,7 @@ public class AdminControllerTest {
                 );
     }
 
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles = "USER")
     @Test
     @DisplayName("ユーザー権限が管理者用投稿一覧ページにアクセス不可確認")
     void ユーザー権限が管理者用投稿一覧ページにアクセス不可確認(@Autowired MockMvc mvc) throws Exception {
@@ -55,7 +55,7 @@ public class AdminControllerTest {
                 );
     }
 
-    @WithMockUser(roles="ADMIN")
+    @WithMockUser(roles = "ADMIN")
     @Test
     @DisplayName("管理者権限が管理者用ユーザー一覧ページにアクセス可能確認")
     void 管理者権限が管理者用ユーザー一覧ページにアクセス可能確認(@Autowired MockMvc mvc) throws Exception {
@@ -65,7 +65,7 @@ public class AdminControllerTest {
                 );
     }
 
-    @WithMockUser(roles="USER")
+    @WithMockUser(roles = "USER")
     @Test
     @DisplayName("ユーザー権限が管理者用ユーザー一覧ページにアクセス不可確認")
     void ユーザー権限が管理者用ユーザー一覧ページにアクセス不可確認(@Autowired MockMvc mvc) throws Exception {

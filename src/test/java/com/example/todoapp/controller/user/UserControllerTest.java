@@ -23,7 +23,8 @@ public class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk()
                 );
     }
-    @WithMockUser(roles="USER")
+
+    @WithMockUser(roles = "USER")
     @Test
     @DisplayName("ユーザー権限がログインページにアクセス不可確認")
     void ユーザー権限がログインページにアクセス不可確認(@Autowired MockMvc mvc) throws Exception {

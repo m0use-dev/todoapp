@@ -31,7 +31,8 @@ public class PostControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isFound()
                 );
     }
-    @WithMockUser(roles="USER")
+
+    @WithMockUser(roles = "USER")
     @Test
     @DisplayName("ユーザー権限が記事一覧ページにアクセス可能確認")
     void ユーザー権限が記事一覧ページにアクセス可能確認(@Autowired MockMvc mvc) throws Exception {
@@ -47,7 +48,7 @@ public class PostControllerTest {
     @DisplayName("記事一覧ページの記事リストmodelの動作確認")
     void 記事一覧ページの記事リストmodelの動作確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(get("/post"))
-                 .andExpect(status().isOk())
-                 .andExpect(model().attributeExists("postList"));
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("postList"));
     }
 }

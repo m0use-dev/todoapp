@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+
 import java.net.MalformedURLException;
 import java.time.LocalDate;
 
@@ -53,9 +54,9 @@ public class PostController {
         if (username == contributorId || hasRoleAdmin) {
             postService.completionPost(id);
             String referer = request.getHeader("Referer");
-            if(referer.matches(".*/admin/posts.*$")){
+            if (referer.matches(".*/admin/posts.*$")) {
                 return "redirect:/admin/posts?completion";
-            }else{
+            } else {
                 return "redirect:/post?completion";
             }
         } else {
@@ -118,9 +119,9 @@ public class PostController {
         if (username == contributorId || hasRoleAdmin) {
             var newEntity = new PostEntity((long) id, null, form.content(), null, null, LocalDate.now(), form.deadline());
             postService.updatePost(newEntity);
-            if(username == contributorId){
+            if (username == contributorId) {
                 return "redirect:/post?update";
-            }else{
+            } else {
                 return "redirect:/admin/posts?update";
             }
         } else {
@@ -140,9 +141,9 @@ public class PostController {
         if (username == contributorId || hasRoleAdmin) {
             postService.deletePost(id);
             String referer = request.getHeader("Referer");
-            if(referer.matches(".*/admin/posts.*$")){
+            if (referer.matches(".*/admin/posts.*$")) {
                 return "redirect:/admin/posts?delete";
-            }else{
+            } else {
                 return "redirect:/post?delete";
             }
         } else {

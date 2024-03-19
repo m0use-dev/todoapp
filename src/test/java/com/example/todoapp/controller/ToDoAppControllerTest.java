@@ -20,7 +20,7 @@ public class ToDoAppControllerTest {
     @DisplayName("トップページにアクセスできることを確認")
     void トップページにアクセスできることを確認(@Autowired MockMvc mvc) throws Exception {
         mvc.perform(
-                MockMvcRequestBuilders.get("/"))
+                        MockMvcRequestBuilders.get("/"))
                 .andExpect(MockMvcResultMatchers.status().isOk()
                 );
     }
