@@ -11,6 +11,22 @@
 <main layout:fragment="content">
   <div class="container">
     <h2 class="text-center">管理者用記事一覧</h2>
+    <div th:if="${param.create}" class="alert alert-primary alert-dismissible fade show" role="alert">
+      タスクを追加しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${param.update}" class="alert alert-primary alert-dismissible fade show" role="alert">
+      タスクを更新しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${param.completion}" class="alert alert-primary alert-dismissible fade show" role="alert">
+      タスクを完了しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${param.delete}" class="alert alert-danger alert-dismissible fade show" role="alert">
+      タスクを削除しました
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <table class="table table-striped">
       <thead>
       <tr>
