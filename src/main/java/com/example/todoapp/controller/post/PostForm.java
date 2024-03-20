@@ -12,18 +12,19 @@ import java.time.LocalDate;
 
 public record PostForm(
         @NotBlank
-        @Size(max = 50,message="50文字以内で入力してください")
+        @Size(max = 50, message = "50文字以内で入力してください")
         String content,
         @FutureOrPresent(message = "本日以降の日付を設定してください")
         LocalDate deadline
-){
-        public static PostForm fromEntity(PostEntity postEntity) {
-                return new PostForm(
-                        postEntity.content(),
-                        postEntity.deadline()
-                );
-        }
-        public PostEntity toEntity() {
-                return new PostEntity(null,null,null,null,null,null,null);
-        }
+) {
+    public static PostForm fromEntity(PostEntity postEntity) {
+        return new PostForm(
+                postEntity.content(),
+                postEntity.deadline()
+        );
+    }
+
+    public PostEntity toEntity() {
+        return new PostEntity(null, null, null, null, null, null, null);
+    }
 }
