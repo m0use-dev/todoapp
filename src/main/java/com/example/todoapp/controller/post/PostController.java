@@ -60,7 +60,7 @@ public class PostController {
                 return "redirect:/post?completion";
             }
         } else {
-            return "redirect:/error/403";
+            return "/error/403";
         }
     }
 
@@ -99,7 +99,7 @@ public class PostController {
             model.addAttribute("postForm", post);
             return "posts/edit";
         } else {
-            return "redirect:/error/403";
+            return "/error/403";
         }
     }
 
@@ -125,7 +125,7 @@ public class PostController {
                 return "redirect:/admin/posts?update";
             }
         } else {
-            return "redirect:/error/403";
+            return "/error/403";
         }
     }
 
@@ -147,7 +147,7 @@ public class PostController {
                 return "redirect:/post?delete";
             }
         } else {
-            return "redirect:/error/403";
+            return "/error/403";
         }
     }
 }
