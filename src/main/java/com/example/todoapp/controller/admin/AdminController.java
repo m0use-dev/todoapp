@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
     private final PostService postService;
     private final UserService userService;
+
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public String index() {
