@@ -64,14 +64,20 @@ class PostRepositoryTest {
         postRepository.insertPost(newEntity);
         Optional<PostEntity> result = postRepository.getPost(21);
         assertThat(result.get().content()).isEqualTo("テスト投稿21");
-
     }
 
     @Test
     @DatabaseSetup("sampleData.xml")
     @DisplayName("deletePostメソッドの動作確認")
     public void deletePostメソッドの動作確認() {
-        int result = postRepository.deletePost(1);
+        // 削除予定のタスクがあるかの確認
+        Optional<PostEntity> result = postRepository.getPost(1);
+        assertThat(result.get().content()).isEqualTo("テスト投稿1");
+        // タスクが削除
+        postRepository.deletePost(1);
+        // 削除したタスクが空になっているかを確認
+        result = postRepository.getPost(1);
+        assertThat(result.isPresent()).isFalse();
     }
 
     @Test
@@ -85,9 +91,16 @@ class PostRepositoryTest {
     @DatabaseSetup("sampleData.xml")
     @DisplayName("updatePostメソッドの動作確認")
     public void updatePostメソッドの動作確認() {
+        // 存在するタスクにupdatePost実行して、内容が変更されているかを確認
         var newEntity = new PostEntity((long) 1, null, "コンテンツ変更", null, null, LocalDate.of(2023, 12, 10), LocalDate.of(2023, 12, 25));
         postRepository.updatePost(newEntity);
         Optional<PostEntity> result = postRepository.getPost(1);
         assertThat(result.get().content()).isEqualTo("コンテンツ変更");
+
+        // 存在しないタスクにupdatePost実行して、内容が空のままになっているかを確認
+        var newEntity2 = new PostEntity((long) 100, null, "コンテンツ変更", null, null, LocalDate.of(2023, 12, 10), LocalDate.of(2023, 12, 25));
+        postRepository.updatePost(newEntity2);
+        Optional<PostEntity> result2 = postRepository.getPost(100);
+        assertThat(result2.isPresent()).isFalse();
     }
 }
