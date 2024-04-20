@@ -17,20 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-
-
-    @GetMapping("/signup")
-    @PreAuthorize("isAnonymous()")
-    public String signup() {
-        return "users/signup";
-    }
-
-    @PostMapping("/signup")
-    @PreAuthorize("isAnonymous()")
-    public String newsignup() {
-        return "redirect:/";
-    }
-
     @RequestMapping("/login")
     @PreAuthorize("isAnonymous()")
     public String login() {
