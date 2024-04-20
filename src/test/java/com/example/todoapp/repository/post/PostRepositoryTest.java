@@ -73,7 +73,7 @@ class PostRepositoryTest {
         // 削除予定のタスクがあるかの確認
         Optional<PostEntity> result = postRepository.getPost(1);
         assertThat(result.get().content()).isEqualTo("テスト投稿1");
-        // タスクが削除
+        // タスクを削除
         postRepository.deletePost(1);
         // 削除したタスクが空になっているかを確認
         result = postRepository.getPost(1);
@@ -84,7 +84,9 @@ class PostRepositoryTest {
     @DatabaseSetup("sampleData.xml")
     @DisplayName("completionPostメソッドの動作確認")
     public void completionPostメソッドの動作確認() {
-        int result = postRepository.completionPost(1);
+        postRepository.completionPost(1);
+        Optional<PostEntity> result = postRepository.getPost(1);
+        assertThat(result.get().status()).isEqualTo("完了");
     }
 
     @Test
