@@ -30,10 +30,9 @@ public class PostService {
         return postRepository.completionPost(id);
     }
 
-    public LocalDate getLastWeek(LocalDate today) {
-        return today.minusDays(7);
+    public LocalDate getNextWeek(LocalDate today) {
+        return today.plusDays(7);
     }
-
 
     public int deletePost(int id) {
         return postRepository.deletePost(id);

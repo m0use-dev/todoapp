@@ -19,11 +19,11 @@ public class PostServiceTest {
     }
 
     @Test
-    @DisplayName("getLastWeekメソッドの動作確認")
-    void getLastWeekメソッドの動作確認() {
-        LocalDate today = LocalDate.of(2024, 3, 2);
-        LocalDate expected = LocalDate.of(2024, 2, 24);
-        LocalDate actual = postService.getLastWeek(today);
+    @DisplayName("getNextWeekメソッドの動作確認")
+    void getNextWeekメソッドの動作確認() {
+        LocalDate today = LocalDate.of(2024, 2, 24);
+        LocalDate expected = LocalDate.of(2024, 3, 2);
+        LocalDate actual = postService.getNextWeek(today);
         assertEquals(expected, actual);
     }
 }
