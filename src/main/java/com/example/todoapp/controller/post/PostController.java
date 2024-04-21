@@ -2,7 +2,7 @@ package com.example.todoapp.controller.post;
 
 import com.example.todoapp.service.post.PostEntity;
 import com.example.todoapp.service.post.PostService;
-import com.example.todoapp.service.user.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.net.MalformedURLException;
 import java.time.LocalDate;
 
 
@@ -23,7 +24,6 @@ import java.time.LocalDate;
 public class PostController {
 
     private final PostService postService;
-    private final UserService userService;
 
     @GetMapping
     @PreAuthorize("isAuthenticated")
@@ -36,15 +36,15 @@ public class PostController {
         model.addAttribute("postList", postList);
         LocalDate today = LocalDate.now();
         model.addAttribute("today", today);
-        LocalDate lastWeek = postService.getLastWeek(today);
-        model.addAttribute("lastWeek", lastWeek);
+        LocalDate nextWeek = postService.getNextWeek(today);
+        model.addAttribute("nextWeek", nextWeek);
         return "posts/index";
     }
 
     @RequestMapping(value = "/{id}/completion")
     @PreAuthorize("isAuthenticated()")
     @Transactional
-    public String completion(@PathVariable int id) {
+    public String completion(@PathVariable int id, HttpServletRequest request) throws MalformedURLException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         String contributorId = postService.getContributor(id);
 
@@ -53,11 +53,15 @@ public class PostController {
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
         if (username == contributorId || hasRoleAdmin) {
             postService.completionPost(id);
-            return "redirect:/post?completion";
+            String referer = request.getHeader("Referer");
+            if (referer.matches(".*/admin/posts.*$")) {
+                return "redirect:/admin/posts?completion";
+            } else {
+                return "redirect:/post?completion";
+            }
         } else {
-            return "redirect:/error/403";
+            return "/error/403";
         }
-
     }
 
     @GetMapping("/create")
@@ -95,16 +99,17 @@ public class PostController {
             model.addAttribute("postForm", post);
             return "posts/edit";
         } else {
-            return "redirect:/error/403";
+            return "/error/403";
         }
     }
 
-    @PostMapping("/{id}/edit")
+    @PutMapping("/{id}/edit")
     @PreAuthorize("isAuthenticated()")
     @Transactional
     public String editPost(@PathVariable int id, @Validated PostForm form, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return edit(id, form, model);
+            model.addAttribute("postForm", form);
+            return "posts/edit";
         }
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         String contributorId = postService.getContributor(id);
@@ -114,16 +119,20 @@ public class PostController {
         if (username == contributorId || hasRoleAdmin) {
             var newEntity = new PostEntity((long) id, null, form.content(), null, null, LocalDate.now(), form.deadline());
             postService.updatePost(newEntity);
-            return "redirect:/post?update";
+            if (username == contributorId) {
+                return "redirect:/post?update";
+            } else {
+                return "redirect:/admin/posts?update";
+            }
         } else {
-            return "redirect:/error/403";
+            return "/error/403";
         }
     }
 
     @RequestMapping(value = "/{id}/delete")
     @PreAuthorize("isAuthenticated()")
     @Transactional
-    public String delete(@PathVariable int id) {
+    public String delete(@PathVariable int id, HttpServletRequest request) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         String contributorId = postService.getContributor(id);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -131,9 +140,14 @@ public class PostController {
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
         if (username == contributorId || hasRoleAdmin) {
             postService.deletePost(id);
-            return "redirect:/post?delete";
+            String referer = request.getHeader("Referer");
+            if (referer.matches(".*/admin/posts.*$")) {
+                return "redirect:/admin/posts?delete";
+            } else {
+                return "redirect:/post?delete";
+            }
         } else {
-            return "redirect:/error/403";
+            return "/error/403";
         }
     }
 }

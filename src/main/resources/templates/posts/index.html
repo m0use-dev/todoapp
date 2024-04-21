@@ -41,8 +41,8 @@
       <tr th:each="post : ${postList}">
         <td><p th:text="${post.content}"></p></td>
         <td><p th:text="${post.status}"></p></td>
-        <td><p th:text="${post.created_at}" th:classappend="${lastWeek gt post.created_at}? ' '"></p></td>
-        <td><p th:text="${post.deadline}" th:classappend="${today gt post.deadline}? 'text-danger'"></p></td>
+        <td><p th:text="${post.created_at}"></p></td>
+        <td><p th:text="${post.deadline}" th:classappend="${nextWeek gt post.deadline}? 'text-danger'"></p></td>
         <td>
           <a class="me-1 btn btn-primary" th:href="@{/post/{id}/edit(id=${post.id})}">編集</a>
           <form class="me-1 d-inline-block" method="post"
